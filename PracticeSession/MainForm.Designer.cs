@@ -48,52 +48,8 @@ namespace PracticeSession
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.labelFilename = new System.Windows.Forms.Label();
             this.labelCurrentlyPlaying = new System.Windows.Forms.Label();
-            this.trackBarTempo = new System.Windows.Forms.TrackBar();
-            this.label1 = new System.Windows.Forms.Label();
-            this.labelX20 = new System.Windows.Forms.Label();
-            this.labelX10 = new System.Windows.Forms.Label();
-            this.labelX01 = new System.Windows.Forms.Label();
-            this.labelX05 = new System.Windows.Forms.Label();
-            this.labelX15 = new System.Windows.Forms.Label();
-            this.labelPitch8vb = new System.Windows.Forms.Label();
-            this.labelPitch0 = new System.Windows.Forms.Label();
-            this.labelPitch8va = new System.Windows.Forms.Label();
-            this.labelPitch = new System.Windows.Forms.Label();
-            this.trackBarPitch = new System.Windows.Forms.TrackBar();
-            this.labelVolume0pc = new System.Windows.Forms.Label();
-            this.labelVolume50pc = new System.Windows.Forms.Label();
-            this.labelVolume100pc = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.trackBarVolume = new System.Windows.Forms.TrackBar();
-            this.labelVolume75pc = new System.Windows.Forms.Label();
-            this.labelVolume25pc = new System.Windows.Forms.Label();
-            this.labelEQMin100pc = new System.Windows.Forms.Label();
-            this.labelEQ0pc = new System.Windows.Forms.Label();
-            this.labelEQ100pc = new System.Windows.Forms.Label();
-            this.labelEqualizer = new System.Windows.Forms.Label();
-            this.trackBarEQLow = new System.Windows.Forms.TrackBar();
-            this.labelEQLow = new System.Windows.Forms.Label();
-            this.labelEQHi = new System.Windows.Forms.Label();
-            this.trackBarEQMid = new System.Windows.Forms.TrackBar();
-            this.labelEQMid = new System.Windows.Forms.Label();
-            this.trackBarEQHi = new System.Windows.Forms.TrackBar();
             this.trackBarPlayTime = new System.Windows.Forms.TrackBar();
             this.labelPosition = new System.Windows.Forms.Label();
-            this.toolStripChannels = new System.Windows.Forms.ToolStrip();
-            this.buttonChannelBoth = new System.Windows.Forms.ToolStripButton();
-            this.buttonChannelLeft = new System.Windows.Forms.ToolStripButton();
-            this.buttonChannelRight = new System.Windows.Forms.ToolStripButton();
-            this.buttonChannelDualMono = new System.Windows.Forms.ToolStripButton();
-            this.labelChannel = new System.Windows.Forms.Label();
-            this.checkBoxSwapLR = new System.Windows.Forms.CheckBox();
-            this.checkBoxSuppressVocals = new System.Windows.Forms.CheckBox();
-            this.labelTempoValue = new System.Windows.Forms.Label();
-            this.labelPitchValue = new System.Windows.Forms.Label();
-            this.labelSemitones = new System.Windows.Forms.Label();
-            this.labelVolumeValue = new System.Windows.Forms.Label();
-            this.labelEQLowValue = new System.Windows.Forms.Label();
-            this.labelEQMidValue = new System.Windows.Forms.Label();
-            this.labelEQHiValue = new System.Windows.Forms.Label();
             this.labelPlayDuration0Q = new System.Windows.Forms.Label();
             this.labelPlayDuration1Q = new System.Windows.Forms.Label();
             this.labelPlayDuration2Q = new System.Windows.Forms.Label();
@@ -101,19 +57,115 @@ namespace PracticeSession
             this.labelPlayDuration = new System.Windows.Forms.Label();
             this.labelPositionValue = new System.Windows.Forms.Label();
             this.PlayTimeUpdateTimer = new System.Windows.Forms.Timer(this.components);
-            this.labelTimeStretchProfile = new System.Windows.Forms.Label();
-            this.comboBoxTimeStretchProfile = new System.Windows.Forms.ComboBox();
             this.buttonOpenFile = new System.Windows.Forms.Button();
             this.buttonPlay = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.panelControls = new System.Windows.Forms.Panel();
+            this.labelEQMidValue = new System.Windows.Forms.Label();
+            this.labelEQLowValue = new System.Windows.Forms.Label();
+            this.labelCueSeconds = new System.Windows.Forms.Label();
+            this.labelCue = new System.Windows.Forms.Label();
+            this.upDownCue = new System.Windows.Forms.NumericUpDown();
+            this.comboBoxTimeStretchProfile = new System.Windows.Forms.ComboBox();
+            this.labelTimeStretchProfile = new System.Windows.Forms.Label();
+            this.labelEQHiValue = new System.Windows.Forms.Label();
+            this.labelVolumeValue = new System.Windows.Forms.Label();
+            this.labelSemitones = new System.Windows.Forms.Label();
+            this.labelPitchValue = new System.Windows.Forms.Label();
+            this.labelTempoValue = new System.Windows.Forms.Label();
+            this.checkBoxSuppressVocals = new System.Windows.Forms.CheckBox();
+            this.checkBoxSwapLR = new System.Windows.Forms.CheckBox();
+            this.labelChannel = new System.Windows.Forms.Label();
+            this.toolStripChannels = new System.Windows.Forms.ToolStrip();
+            this.buttonChannelBoth = new System.Windows.Forms.ToolStripButton();
+            this.buttonChannelLeft = new System.Windows.Forms.ToolStripButton();
+            this.buttonChannelRight = new System.Windows.Forms.ToolStripButton();
+            this.buttonChannelDualMono = new System.Windows.Forms.ToolStripButton();
+            this.labelEQMid = new System.Windows.Forms.Label();
+            this.trackBarEQHi = new System.Windows.Forms.TrackBar();
+            this.labelEQHi = new System.Windows.Forms.Label();
+            this.trackBarEQMid = new System.Windows.Forms.TrackBar();
+            this.labelEQLow = new System.Windows.Forms.Label();
+            this.labelEQMin100pc = new System.Windows.Forms.Label();
+            this.labelEQ0pc = new System.Windows.Forms.Label();
+            this.labelEQ100pc = new System.Windows.Forms.Label();
+            this.labelEqualizer = new System.Windows.Forms.Label();
+            this.trackBarEQLow = new System.Windows.Forms.TrackBar();
+            this.labelVolume25pc = new System.Windows.Forms.Label();
+            this.labelVolume75pc = new System.Windows.Forms.Label();
+            this.labelVolume0pc = new System.Windows.Forms.Label();
+            this.labelVolume50pc = new System.Windows.Forms.Label();
+            this.labelVolume100pc = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.trackBarVolume = new System.Windows.Forms.TrackBar();
+            this.labelPitch8vb = new System.Windows.Forms.Label();
+            this.labelPitch0 = new System.Windows.Forms.Label();
+            this.labelPitch8va = new System.Windows.Forms.Label();
+            this.labelPitch = new System.Windows.Forms.Label();
+            this.trackBarPitch = new System.Windows.Forms.TrackBar();
+            this.labelX15 = new System.Windows.Forms.Label();
+            this.labelX05 = new System.Windows.Forms.Label();
+            this.labelX01 = new System.Windows.Forms.Label();
+            this.labelX10 = new System.Windows.Forms.Label();
+            this.labelX20 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.trackBarTempo = new System.Windows.Forms.TrackBar();
+            this.panelLoop = new System.Windows.Forms.Panel();
+            this.upDownCurrentMilliseconds = new System.Windows.Forms.NumericUpDown();
+            this.upDownCurrentSeconds = new System.Windows.Forms.NumericUpDown();
+            this.upDownCurrentMinutes = new System.Windows.Forms.NumericUpDown();
+            this.buttonEndLoopNow = new System.Windows.Forms.Button();
+            this.upDownEndLoopMilliseconds = new System.Windows.Forms.NumericUpDown();
+            this.upDownEndLoopSeconds = new System.Windows.Forms.NumericUpDown();
+            this.upDownEndLoopMinutes = new System.Windows.Forms.NumericUpDown();
+            this.labelLoopEnd = new System.Windows.Forms.Label();
+            this.buttonStartLoopNow = new System.Windows.Forms.Button();
+            this.upDownStartLoopMilliseconds = new System.Windows.Forms.NumericUpDown();
+            this.upDownStartLoopSeconds = new System.Windows.Forms.NumericUpDown();
+            this.upDownStartLoopMinutes = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.checkBoxLoop = new System.Windows.Forms.CheckBox();
+            this.panelPresets = new System.Windows.Forms.Panel();
+            this.buttonReset = new System.Windows.Forms.Button();
+            this.buttonSavePreset = new System.Windows.Forms.Button();
+            this.labelPreset4 = new System.Windows.Forms.Label();
+            this.labelPreset8 = new System.Windows.Forms.Label();
+            this.buttonPreset8 = new System.Windows.Forms.Button();
+            this.buttonPreset4 = new System.Windows.Forms.Button();
+            this.labelPreset3 = new System.Windows.Forms.Label();
+            this.labelPreset7 = new System.Windows.Forms.Label();
+            this.buttonPreset7 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.labelPreset2 = new System.Windows.Forms.Label();
+            this.labelPreset6 = new System.Windows.Forms.Label();
+            this.buttonPreset6 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.labelPreset1 = new System.Windows.Forms.Label();
+            this.labelPreset5 = new System.Windows.Forms.Label();
+            this.buttonPreset5 = new System.Windows.Forms.Button();
+            this.buttonPreset1 = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarTempo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarPitch)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarVolume)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarEQLow)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarEQMid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarEQHi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarPlayTime)).BeginInit();
+            this.panelControls.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownCue)).BeginInit();
             this.toolStripChannels.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarEQHi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarEQMid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarEQLow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarVolume)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarPitch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarTempo)).BeginInit();
+            this.panelLoop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownCurrentMilliseconds)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownCurrentSeconds)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownCurrentMinutes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownEndLoopMilliseconds)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownEndLoopSeconds)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownEndLoopMinutes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownStartLoopMilliseconds)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownStartLoopSeconds)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownStartLoopMinutes)).BeginInit();
+            this.panelPresets.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -123,7 +175,7 @@ namespace PracticeSession
             this.menuItemFile});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1204, 40);
+            this.menuStrip.Size = new System.Drawing.Size(1214, 40);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip";
             this.menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip_ItemClicked);
@@ -232,347 +284,6 @@ namespace PracticeSession
             this.labelCurrentlyPlaying.TabIndex = 3;
             this.labelCurrentlyPlaying.Text = "Currently playing:";
             // 
-            // trackBarTempo
-            // 
-            this.trackBarTempo.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
-            this.trackBarTempo.LargeChange = 0;
-            this.trackBarTempo.Location = new System.Drawing.Point(96, 400);
-            this.trackBarTempo.Maximum = 200;
-            this.trackBarTempo.Minimum = 10;
-            this.trackBarTempo.Name = "trackBarTempo";
-            this.trackBarTempo.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBarTempo.Size = new System.Drawing.Size(90, 538);
-            this.trackBarTempo.SmallChange = 2;
-            this.trackBarTempo.TabIndex = 4;
-            this.trackBarTempo.TickFrequency = 10;
-            this.trackBarTempo.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.trackBarTempo.Value = 100;
-            this.trackBarTempo.ValueChanged += new System.EventHandler(this.trackBarTempo_ValueChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(84, 365);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 32);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Tempo";
-            // 
-            // labelX20
-            // 
-            this.labelX20.AutoSize = true;
-            this.labelX20.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelX20.Location = new System.Drawing.Point(55, 412);
-            this.labelX20.Name = "labelX20";
-            this.labelX20.Size = new System.Drawing.Size(44, 25);
-            this.labelX20.TabIndex = 6;
-            this.labelX20.Text = "x2.0";
-            this.labelX20.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelX10
-            // 
-            this.labelX10.AutoSize = true;
-            this.labelX10.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelX10.Location = new System.Drawing.Point(55, 667);
-            this.labelX10.Name = "labelX10";
-            this.labelX10.Size = new System.Drawing.Size(44, 25);
-            this.labelX10.TabIndex = 7;
-            this.labelX10.Text = "x1.0";
-            this.labelX10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelX01
-            // 
-            this.labelX01.AutoSize = true;
-            this.labelX01.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelX01.Location = new System.Drawing.Point(55, 900);
-            this.labelX01.Name = "labelX01";
-            this.labelX01.Size = new System.Drawing.Size(44, 25);
-            this.labelX01.TabIndex = 8;
-            this.labelX01.Text = "x0.1";
-            this.labelX01.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelX05
-            // 
-            this.labelX05.AutoSize = true;
-            this.labelX05.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelX05.Location = new System.Drawing.Point(55, 784);
-            this.labelX05.Name = "labelX05";
-            this.labelX05.Size = new System.Drawing.Size(44, 25);
-            this.labelX05.TabIndex = 9;
-            this.labelX05.Text = "x0.5";
-            this.labelX05.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelX15
-            // 
-            this.labelX15.AutoSize = true;
-            this.labelX15.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelX15.Location = new System.Drawing.Point(55, 528);
-            this.labelX15.Name = "labelX15";
-            this.labelX15.Size = new System.Drawing.Size(44, 25);
-            this.labelX15.TabIndex = 10;
-            this.labelX15.Text = "x1.5";
-            this.labelX15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelPitch8vb
-            // 
-            this.labelPitch8vb.AutoSize = true;
-            this.labelPitch8vb.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelPitch8vb.Location = new System.Drawing.Point(219, 900);
-            this.labelPitch8vb.Name = "labelPitch8vb";
-            this.labelPitch8vb.Size = new System.Drawing.Size(42, 25);
-            this.labelPitch8vb.TabIndex = 15;
-            this.labelPitch8vb.Text = "8vb";
-            this.labelPitch8vb.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelPitch0
-            // 
-            this.labelPitch0.AutoSize = true;
-            this.labelPitch0.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelPitch0.Location = new System.Drawing.Point(219, 655);
-            this.labelPitch0.Name = "labelPitch0";
-            this.labelPitch0.Size = new System.Drawing.Size(22, 25);
-            this.labelPitch0.TabIndex = 14;
-            this.labelPitch0.Text = "0";
-            this.labelPitch0.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelPitch8va
-            // 
-            this.labelPitch8va.AutoSize = true;
-            this.labelPitch8va.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelPitch8va.Location = new System.Drawing.Point(219, 412);
-            this.labelPitch8va.Name = "labelPitch8va";
-            this.labelPitch8va.Size = new System.Drawing.Size(40, 25);
-            this.labelPitch8va.TabIndex = 13;
-            this.labelPitch8va.Text = "8va";
-            this.labelPitch8va.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelPitch
-            // 
-            this.labelPitch.AutoSize = true;
-            this.labelPitch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelPitch.Location = new System.Drawing.Point(260, 365);
-            this.labelPitch.Name = "labelPitch";
-            this.labelPitch.Size = new System.Drawing.Size(71, 32);
-            this.labelPitch.TabIndex = 12;
-            this.labelPitch.Text = "Pitch";
-            // 
-            // trackBarPitch
-            // 
-            this.trackBarPitch.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
-            this.trackBarPitch.LargeChange = 0;
-            this.trackBarPitch.Location = new System.Drawing.Point(260, 400);
-            this.trackBarPitch.Maximum = 96;
-            this.trackBarPitch.Minimum = -96;
-            this.trackBarPitch.Name = "trackBarPitch";
-            this.trackBarPitch.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBarPitch.Size = new System.Drawing.Size(90, 538);
-            this.trackBarPitch.SmallChange = 2;
-            this.trackBarPitch.TabIndex = 11;
-            this.trackBarPitch.TickFrequency = 8;
-            this.trackBarPitch.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.trackBarPitch.ValueChanged += new System.EventHandler(this.trackBarPitch_ValueChanged);
-            // 
-            // labelVolume0pc
-            // 
-            this.labelVolume0pc.AutoSize = true;
-            this.labelVolume0pc.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelVolume0pc.Location = new System.Drawing.Point(451, 900);
-            this.labelVolume0pc.Name = "labelVolume0pc";
-            this.labelVolume0pc.Size = new System.Drawing.Size(37, 25);
-            this.labelVolume0pc.TabIndex = 20;
-            this.labelVolume0pc.Text = "0%";
-            this.labelVolume0pc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelVolume50pc
-            // 
-            this.labelVolume50pc.AutoSize = true;
-            this.labelVolume50pc.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelVolume50pc.Location = new System.Drawing.Point(441, 655);
-            this.labelVolume50pc.Name = "labelVolume50pc";
-            this.labelVolume50pc.Size = new System.Drawing.Size(47, 25);
-            this.labelVolume50pc.TabIndex = 19;
-            this.labelVolume50pc.Text = "50%";
-            this.labelVolume50pc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelVolume100pc
-            // 
-            this.labelVolume100pc.AutoSize = true;
-            this.labelVolume100pc.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelVolume100pc.Location = new System.Drawing.Point(431, 412);
-            this.labelVolume100pc.Name = "labelVolume100pc";
-            this.labelVolume100pc.Size = new System.Drawing.Size(57, 25);
-            this.labelVolume100pc.TabIndex = 18;
-            this.labelVolume100pc.Text = "100%";
-            this.labelVolume100pc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(461, 365);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(100, 32);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "Volume";
-            // 
-            // trackBarVolume
-            // 
-            this.trackBarVolume.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
-            this.trackBarVolume.Location = new System.Drawing.Point(482, 400);
-            this.trackBarVolume.Maximum = 100;
-            this.trackBarVolume.Name = "trackBarVolume";
-            this.trackBarVolume.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBarVolume.Size = new System.Drawing.Size(90, 538);
-            this.trackBarVolume.TabIndex = 16;
-            this.trackBarVolume.TickFrequency = 10;
-            this.trackBarVolume.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.trackBarVolume.Value = 75;
-            this.trackBarVolume.ValueChanged += new System.EventHandler(this.trackBarVolume_ValueChanged);
-            // 
-            // labelVolume75pc
-            // 
-            this.labelVolume75pc.AutoSize = true;
-            this.labelVolume75pc.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelVolume75pc.Location = new System.Drawing.Point(441, 528);
-            this.labelVolume75pc.Name = "labelVolume75pc";
-            this.labelVolume75pc.Size = new System.Drawing.Size(47, 25);
-            this.labelVolume75pc.TabIndex = 21;
-            this.labelVolume75pc.Text = "75%";
-            this.labelVolume75pc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelVolume25pc
-            // 
-            this.labelVolume25pc.AutoSize = true;
-            this.labelVolume25pc.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelVolume25pc.Location = new System.Drawing.Point(441, 775);
-            this.labelVolume25pc.Name = "labelVolume25pc";
-            this.labelVolume25pc.Size = new System.Drawing.Size(47, 25);
-            this.labelVolume25pc.TabIndex = 22;
-            this.labelVolume25pc.Text = "25%";
-            this.labelVolume25pc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelEQMin100pc
-            // 
-            this.labelEQMin100pc.AutoSize = true;
-            this.labelEQMin100pc.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelEQMin100pc.Location = new System.Drawing.Point(630, 900);
-            this.labelEQMin100pc.Name = "labelEQMin100pc";
-            this.labelEQMin100pc.Size = new System.Drawing.Size(64, 25);
-            this.labelEQMin100pc.TabIndex = 27;
-            this.labelEQMin100pc.Text = "-100%";
-            this.labelEQMin100pc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelEQ0pc
-            // 
-            this.labelEQ0pc.AutoSize = true;
-            this.labelEQ0pc.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelEQ0pc.Location = new System.Drawing.Point(657, 655);
-            this.labelEQ0pc.Name = "labelEQ0pc";
-            this.labelEQ0pc.Size = new System.Drawing.Size(37, 25);
-            this.labelEQ0pc.TabIndex = 26;
-            this.labelEQ0pc.Text = "0%";
-            this.labelEQ0pc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelEQ100pc
-            // 
-            this.labelEQ100pc.AutoSize = true;
-            this.labelEQ100pc.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelEQ100pc.Location = new System.Drawing.Point(637, 412);
-            this.labelEQ100pc.Name = "labelEQ100pc";
-            this.labelEQ100pc.Size = new System.Drawing.Size(57, 25);
-            this.labelEQ100pc.TabIndex = 25;
-            this.labelEQ100pc.Text = "100%";
-            this.labelEQ100pc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelEqualizer
-            // 
-            this.labelEqualizer.AutoSize = true;
-            this.labelEqualizer.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelEqualizer.Location = new System.Drawing.Point(729, 333);
-            this.labelEqualizer.Name = "labelEqualizer";
-            this.labelEqualizer.Size = new System.Drawing.Size(119, 32);
-            this.labelEqualizer.TabIndex = 24;
-            this.labelEqualizer.Text = "Equalizer";
-            // 
-            // trackBarEQLow
-            // 
-            this.trackBarEQLow.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
-            this.trackBarEQLow.LargeChange = 10;
-            this.trackBarEQLow.Location = new System.Drawing.Point(688, 400);
-            this.trackBarEQLow.Maximum = 100;
-            this.trackBarEQLow.Minimum = -100;
-            this.trackBarEQLow.Name = "trackBarEQLow";
-            this.trackBarEQLow.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBarEQLow.Size = new System.Drawing.Size(90, 538);
-            this.trackBarEQLow.SmallChange = 5;
-            this.trackBarEQLow.TabIndex = 23;
-            this.trackBarEQLow.TickFrequency = 20;
-            this.trackBarEQLow.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.trackBarEQLow.ValueChanged += new System.EventHandler(this.trackBarEQLow_ValueChanged);
-            // 
-            // labelEQLow
-            // 
-            this.labelEQLow.AutoSize = true;
-            this.labelEQLow.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelEQLow.Location = new System.Drawing.Point(688, 365);
-            this.labelEQLow.Name = "labelEQLow";
-            this.labelEQLow.Size = new System.Drawing.Size(60, 32);
-            this.labelEQLow.TabIndex = 30;
-            this.labelEQLow.Text = "Low";
-            // 
-            // labelEQHi
-            // 
-            this.labelEQHi.AutoSize = true;
-            this.labelEQHi.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelEQHi.Location = new System.Drawing.Point(840, 365);
-            this.labelEQHi.Name = "labelEQHi";
-            this.labelEQHi.Size = new System.Drawing.Size(39, 32);
-            this.labelEQHi.TabIndex = 32;
-            this.labelEQHi.Text = "Hi";
-            // 
-            // trackBarEQMid
-            // 
-            this.trackBarEQMid.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
-            this.trackBarEQMid.LargeChange = 10;
-            this.trackBarEQMid.Location = new System.Drawing.Point(758, 400);
-            this.trackBarEQMid.Maximum = 100;
-            this.trackBarEQMid.Minimum = -100;
-            this.trackBarEQMid.Name = "trackBarEQMid";
-            this.trackBarEQMid.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBarEQMid.Size = new System.Drawing.Size(90, 538);
-            this.trackBarEQMid.SmallChange = 5;
-            this.trackBarEQMid.TabIndex = 31;
-            this.trackBarEQMid.TickFrequency = 20;
-            this.trackBarEQMid.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.trackBarEQMid.ValueChanged += new System.EventHandler(this.trackBarEQMid_ValueChanged);
-            // 
-            // labelEQMid
-            // 
-            this.labelEQMid.AutoSize = true;
-            this.labelEQMid.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelEQMid.Location = new System.Drawing.Point(763, 365);
-            this.labelEQMid.Name = "labelEQMid";
-            this.labelEQMid.Size = new System.Drawing.Size(59, 32);
-            this.labelEQMid.TabIndex = 34;
-            this.labelEQMid.Text = "Mid";
-            // 
-            // trackBarEQHi
-            // 
-            this.trackBarEQHi.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
-            this.trackBarEQHi.LargeChange = 10;
-            this.trackBarEQHi.Location = new System.Drawing.Point(829, 400);
-            this.trackBarEQHi.Maximum = 100;
-            this.trackBarEQHi.Minimum = -100;
-            this.trackBarEQHi.Name = "trackBarEQHi";
-            this.trackBarEQHi.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBarEQHi.Size = new System.Drawing.Size(90, 538);
-            this.trackBarEQHi.SmallChange = 5;
-            this.trackBarEQHi.TabIndex = 33;
-            this.trackBarEQHi.TickFrequency = 20;
-            this.trackBarEQHi.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.trackBarEQHi.ValueChanged += new System.EventHandler(this.trackBarEQHi_ValueChanged);
-            // 
             // trackBarPlayTime
             // 
             this.trackBarPlayTime.Cursor = System.Windows.Forms.Cursors.NoMoveHoriz;
@@ -596,161 +307,6 @@ namespace PracticeSession
             this.labelPosition.Size = new System.Drawing.Size(114, 32);
             this.labelPosition.TabIndex = 36;
             this.labelPosition.Text = "Position:";
-            // 
-            // toolStripChannels
-            // 
-            this.toolStripChannels.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.toolStripChannels.BackColor = System.Drawing.SystemColors.Control;
-            this.toolStripChannels.CanOverflow = false;
-            this.toolStripChannels.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStripChannels.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStripChannels.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.toolStripChannels.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.buttonChannelBoth,
-            this.buttonChannelLeft,
-            this.buttonChannelRight,
-            this.buttonChannelDualMono});
-            this.toolStripChannels.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.toolStripChannels.Location = new System.Drawing.Point(965, 412);
-            this.toolStripChannels.Name = "toolStripChannels";
-            this.toolStripChannels.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStripChannels.Size = new System.Drawing.Size(96, 170);
-            this.toolStripChannels.TabIndex = 37;
-            this.toolStripChannels.Text = "toolStripChannels";
-            this.toolStripChannels.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStripChannels_ItemClicked);
-            // 
-            // buttonChannelBoth
-            // 
-            this.buttonChannelBoth.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.buttonChannelBoth.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonChannelBoth.Image = ((System.Drawing.Image)(resources.GetObject("buttonChannelBoth.Image")));
-            this.buttonChannelBoth.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonChannelBoth.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonChannelBoth.Name = "buttonChannelBoth";
-            this.buttonChannelBoth.Size = new System.Drawing.Size(93, 36);
-            this.buttonChannelBoth.Text = "BOTH";
-            this.buttonChannelBoth.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonChannelBoth.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
-            // 
-            // buttonChannelLeft
-            // 
-            this.buttonChannelLeft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.buttonChannelLeft.Image = ((System.Drawing.Image)(resources.GetObject("buttonChannelLeft.Image")));
-            this.buttonChannelLeft.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonChannelLeft.Name = "buttonChannelLeft";
-            this.buttonChannelLeft.Size = new System.Drawing.Size(93, 36);
-            this.buttonChannelLeft.Text = "LEFT";
-            this.buttonChannelLeft.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // buttonChannelRight
-            // 
-            this.buttonChannelRight.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.buttonChannelRight.Image = ((System.Drawing.Image)(resources.GetObject("buttonChannelRight.Image")));
-            this.buttonChannelRight.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonChannelRight.Name = "buttonChannelRight";
-            this.buttonChannelRight.Size = new System.Drawing.Size(93, 36);
-            this.buttonChannelRight.Text = "RIGHT";
-            this.buttonChannelRight.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // buttonChannelDualMono
-            // 
-            this.buttonChannelDualMono.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.buttonChannelDualMono.Image = ((System.Drawing.Image)(resources.GetObject("buttonChannelDualMono.Image")));
-            this.buttonChannelDualMono.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonChannelDualMono.Name = "buttonChannelDualMono";
-            this.buttonChannelDualMono.Size = new System.Drawing.Size(93, 36);
-            this.buttonChannelDualMono.Text = "MONO";
-            this.buttonChannelDualMono.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // labelChannel
-            // 
-            this.labelChannel.AutoSize = true;
-            this.labelChannel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelChannel.Location = new System.Drawing.Point(955, 365);
-            this.labelChannel.Name = "labelChannel";
-            this.labelChannel.Size = new System.Drawing.Size(106, 32);
-            this.labelChannel.TabIndex = 38;
-            this.labelChannel.Text = "Channel";
-            // 
-            // checkBoxSwapLR
-            // 
-            this.checkBoxSwapLR.AutoSize = true;
-            this.checkBoxSwapLR.Location = new System.Drawing.Point(965, 847);
-            this.checkBoxSwapLR.Name = "checkBoxSwapLR";
-            this.checkBoxSwapLR.Size = new System.Drawing.Size(143, 36);
-            this.checkBoxSwapLR.TabIndex = 39;
-            this.checkBoxSwapLR.Text = "Swap L/R";
-            this.checkBoxSwapLR.UseVisualStyleBackColor = true;
-            this.checkBoxSwapLR.CheckedChanged += new System.EventHandler(this.checkBoxSwapLR_CheckedChanged);
-            // 
-            // checkBoxSuppressVocals
-            // 
-            this.checkBoxSuppressVocals.AutoSize = true;
-            this.checkBoxSuppressVocals.Location = new System.Drawing.Point(965, 889);
-            this.checkBoxSuppressVocals.Name = "checkBoxSuppressVocals";
-            this.checkBoxSuppressVocals.Size = new System.Drawing.Size(215, 36);
-            this.checkBoxSuppressVocals.TabIndex = 40;
-            this.checkBoxSuppressVocals.Text = "Suppress Vocals";
-            this.checkBoxSuppressVocals.UseVisualStyleBackColor = true;
-            this.checkBoxSuppressVocals.CheckedChanged += new System.EventHandler(this.checkBoxSuppressVocals_CheckedChanged);
-            // 
-            // labelTempoValue
-            // 
-            this.labelTempoValue.Location = new System.Drawing.Point(96, 925);
-            this.labelTempoValue.Name = "labelTempoValue";
-            this.labelTempoValue.Size = new System.Drawing.Size(70, 32);
-            this.labelTempoValue.TabIndex = 41;
-            this.labelTempoValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // labelPitchValue
-            // 
-            this.labelPitchValue.Location = new System.Drawing.Point(260, 925);
-            this.labelPitchValue.Name = "labelPitchValue";
-            this.labelPitchValue.Size = new System.Drawing.Size(70, 32);
-            this.labelPitchValue.TabIndex = 42;
-            this.labelPitchValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // labelSemitones
-            // 
-            this.labelSemitones.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelSemitones.Location = new System.Drawing.Point(243, 957);
-            this.labelSemitones.Name = "labelSemitones";
-            this.labelSemitones.Size = new System.Drawing.Size(107, 32);
-            this.labelSemitones.TabIndex = 43;
-            this.labelSemitones.Text = "Semi-tones";
-            this.labelSemitones.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // labelVolumeValue
-            // 
-            this.labelVolumeValue.Location = new System.Drawing.Point(482, 925);
-            this.labelVolumeValue.Name = "labelVolumeValue";
-            this.labelVolumeValue.Size = new System.Drawing.Size(70, 32);
-            this.labelVolumeValue.TabIndex = 44;
-            this.labelVolumeValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // labelEQLowValue
-            // 
-            this.labelEQLowValue.Location = new System.Drawing.Point(688, 925);
-            this.labelEQLowValue.Name = "labelEQLowValue";
-            this.labelEQLowValue.Size = new System.Drawing.Size(70, 32);
-            this.labelEQLowValue.TabIndex = 45;
-            this.labelEQLowValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // labelEQMidValue
-            // 
-            this.labelEQMidValue.Location = new System.Drawing.Point(753, 925);
-            this.labelEQMidValue.Name = "labelEQMidValue";
-            this.labelEQMidValue.Size = new System.Drawing.Size(70, 32);
-            this.labelEQMidValue.TabIndex = 46;
-            this.labelEQMidValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // labelEQHiValue
-            // 
-            this.labelEQHiValue.Location = new System.Drawing.Point(829, 925);
-            this.labelEQHiValue.Name = "labelEQHiValue";
-            this.labelEQHiValue.Size = new System.Drawing.Size(70, 32);
-            this.labelEQHiValue.TabIndex = 47;
-            this.labelEQHiValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // labelPlayDuration0Q
             // 
@@ -822,25 +378,6 @@ namespace PracticeSession
             this.PlayTimeUpdateTimer.Interval = 50;
             this.PlayTimeUpdateTimer.Tick += new System.EventHandler(this.PlayTimeUpdateTimer_Tick);
             // 
-            // labelTimeStretchProfile
-            // 
-            this.labelTimeStretchProfile.AutoSize = true;
-            this.labelTimeStretchProfile.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelTimeStretchProfile.Location = new System.Drawing.Point(21, 1005);
-            this.labelTimeStretchProfile.Name = "labelTimeStretchProfile";
-            this.labelTimeStretchProfile.Size = new System.Drawing.Size(97, 32);
-            this.labelTimeStretchProfile.TabIndex = 54;
-            this.labelTimeStretchProfile.Text = "Profile:";
-            // 
-            // comboBoxTimeStretchProfile
-            // 
-            this.comboBoxTimeStretchProfile.FormattingEnabled = true;
-            this.comboBoxTimeStretchProfile.Location = new System.Drawing.Point(135, 1005);
-            this.comboBoxTimeStretchProfile.Name = "comboBoxTimeStretchProfile";
-            this.comboBoxTimeStretchProfile.Size = new System.Drawing.Size(404, 40);
-            this.comboBoxTimeStretchProfile.TabIndex = 55;
-            this.comboBoxTimeStretchProfile.SelectedIndexChanged += new System.EventHandler(this.comboBoxTimeStretchProfile_SelectedIndexChanged);
-            // 
             // buttonOpenFile
             // 
             this.buttonOpenFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -863,63 +400,1036 @@ namespace PracticeSession
             this.buttonPlay.UseVisualStyleBackColor = true;
             this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 1325);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1214, 22);
+            this.statusStrip1.TabIndex = 58;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // panelControls
+            // 
+            this.panelControls.Controls.Add(this.labelEQMidValue);
+            this.panelControls.Controls.Add(this.labelEQLowValue);
+            this.panelControls.Controls.Add(this.labelCueSeconds);
+            this.panelControls.Controls.Add(this.labelCue);
+            this.panelControls.Controls.Add(this.upDownCue);
+            this.panelControls.Controls.Add(this.comboBoxTimeStretchProfile);
+            this.panelControls.Controls.Add(this.labelTimeStretchProfile);
+            this.panelControls.Controls.Add(this.labelEQHiValue);
+            this.panelControls.Controls.Add(this.labelVolumeValue);
+            this.panelControls.Controls.Add(this.labelSemitones);
+            this.panelControls.Controls.Add(this.labelPitchValue);
+            this.panelControls.Controls.Add(this.labelTempoValue);
+            this.panelControls.Controls.Add(this.checkBoxSuppressVocals);
+            this.panelControls.Controls.Add(this.checkBoxSwapLR);
+            this.panelControls.Controls.Add(this.labelChannel);
+            this.panelControls.Controls.Add(this.toolStripChannels);
+            this.panelControls.Controls.Add(this.labelEQMid);
+            this.panelControls.Controls.Add(this.trackBarEQHi);
+            this.panelControls.Controls.Add(this.labelEQHi);
+            this.panelControls.Controls.Add(this.trackBarEQMid);
+            this.panelControls.Controls.Add(this.labelEQLow);
+            this.panelControls.Controls.Add(this.labelEQMin100pc);
+            this.panelControls.Controls.Add(this.labelEQ0pc);
+            this.panelControls.Controls.Add(this.labelEQ100pc);
+            this.panelControls.Controls.Add(this.labelEqualizer);
+            this.panelControls.Controls.Add(this.trackBarEQLow);
+            this.panelControls.Controls.Add(this.labelVolume25pc);
+            this.panelControls.Controls.Add(this.labelVolume75pc);
+            this.panelControls.Controls.Add(this.labelVolume0pc);
+            this.panelControls.Controls.Add(this.labelVolume50pc);
+            this.panelControls.Controls.Add(this.labelVolume100pc);
+            this.panelControls.Controls.Add(this.label5);
+            this.panelControls.Controls.Add(this.trackBarVolume);
+            this.panelControls.Controls.Add(this.labelPitch8vb);
+            this.panelControls.Controls.Add(this.labelPitch0);
+            this.panelControls.Controls.Add(this.labelPitch8va);
+            this.panelControls.Controls.Add(this.labelPitch);
+            this.panelControls.Controls.Add(this.trackBarPitch);
+            this.panelControls.Controls.Add(this.labelX15);
+            this.panelControls.Controls.Add(this.labelX05);
+            this.panelControls.Controls.Add(this.labelX01);
+            this.panelControls.Controls.Add(this.labelX10);
+            this.panelControls.Controls.Add(this.labelX20);
+            this.panelControls.Controls.Add(this.label1);
+            this.panelControls.Controls.Add(this.trackBarTempo);
+            this.panelControls.Location = new System.Drawing.Point(11, 546);
+            this.panelControls.Name = "panelControls";
+            this.panelControls.Size = new System.Drawing.Size(1178, 776);
+            this.panelControls.TabIndex = 62;
+            // 
+            // labelEQMidValue
+            // 
+            this.labelEQMidValue.Location = new System.Drawing.Point(749, 620);
+            this.labelEQMidValue.Name = "labelEQMidValue";
+            this.labelEQMidValue.Size = new System.Drawing.Size(70, 32);
+            this.labelEQMidValue.TabIndex = 106;
+            this.labelEQMidValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // labelEQLowValue
+            // 
+            this.labelEQLowValue.Location = new System.Drawing.Point(673, 620);
+            this.labelEQLowValue.Name = "labelEQLowValue";
+            this.labelEQLowValue.Size = new System.Drawing.Size(70, 32);
+            this.labelEQLowValue.TabIndex = 105;
+            this.labelEQLowValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // labelCueSeconds
+            // 
+            this.labelCueSeconds.AutoSize = true;
+            this.labelCueSeconds.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelCueSeconds.Location = new System.Drawing.Point(765, 703);
+            this.labelCueSeconds.Name = "labelCueSeconds";
+            this.labelCueSeconds.Size = new System.Drawing.Size(58, 32);
+            this.labelCueSeconds.TabIndex = 104;
+            this.labelCueSeconds.Text = "secs";
+            // 
+            // labelCue
+            // 
+            this.labelCue.AutoSize = true;
+            this.labelCue.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelCue.Location = new System.Drawing.Point(628, 703);
+            this.labelCue.Name = "labelCue";
+            this.labelCue.Size = new System.Drawing.Size(57, 32);
+            this.labelCue.TabIndex = 103;
+            this.labelCue.Text = "Cue";
+            // 
+            // upDownCue
+            // 
+            this.upDownCue.Location = new System.Drawing.Point(691, 701);
+            this.upDownCue.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.upDownCue.Name = "upDownCue";
+            this.upDownCue.Size = new System.Drawing.Size(68, 39);
+            this.upDownCue.TabIndex = 102;
+            this.upDownCue.ValueChanged += new System.EventHandler(this.upDownCue_ValueChanged);
+            // 
+            // comboBoxTimeStretchProfile
+            // 
+            this.comboBoxTimeStretchProfile.FormattingEnabled = true;
+            this.comboBoxTimeStretchProfile.Location = new System.Drawing.Point(126, 700);
+            this.comboBoxTimeStretchProfile.Name = "comboBoxTimeStretchProfile";
+            this.comboBoxTimeStretchProfile.Size = new System.Drawing.Size(404, 40);
+            this.comboBoxTimeStretchProfile.TabIndex = 101;
+            this.comboBoxTimeStretchProfile.SelectedIndexChanged += new System.EventHandler(this.comboBoxTimeStretchProfile_SelectedIndexChanged);
+            // 
+            // labelTimeStretchProfile
+            // 
+            this.labelTimeStretchProfile.AutoSize = true;
+            this.labelTimeStretchProfile.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelTimeStretchProfile.Location = new System.Drawing.Point(12, 700);
+            this.labelTimeStretchProfile.Name = "labelTimeStretchProfile";
+            this.labelTimeStretchProfile.Size = new System.Drawing.Size(97, 32);
+            this.labelTimeStretchProfile.TabIndex = 100;
+            this.labelTimeStretchProfile.Text = "Profile:";
+            // 
+            // labelEQHiValue
+            // 
+            this.labelEQHiValue.Location = new System.Drawing.Point(820, 620);
+            this.labelEQHiValue.Name = "labelEQHiValue";
+            this.labelEQHiValue.Size = new System.Drawing.Size(70, 32);
+            this.labelEQHiValue.TabIndex = 99;
+            this.labelEQHiValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // labelVolumeValue
+            // 
+            this.labelVolumeValue.Location = new System.Drawing.Point(473, 620);
+            this.labelVolumeValue.Name = "labelVolumeValue";
+            this.labelVolumeValue.Size = new System.Drawing.Size(70, 32);
+            this.labelVolumeValue.TabIndex = 98;
+            this.labelVolumeValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // labelSemitones
+            // 
+            this.labelSemitones.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelSemitones.Location = new System.Drawing.Point(234, 652);
+            this.labelSemitones.Name = "labelSemitones";
+            this.labelSemitones.Size = new System.Drawing.Size(107, 32);
+            this.labelSemitones.TabIndex = 97;
+            this.labelSemitones.Text = "Semi-tones";
+            this.labelSemitones.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // labelPitchValue
+            // 
+            this.labelPitchValue.Location = new System.Drawing.Point(251, 620);
+            this.labelPitchValue.Name = "labelPitchValue";
+            this.labelPitchValue.Size = new System.Drawing.Size(70, 32);
+            this.labelPitchValue.TabIndex = 96;
+            this.labelPitchValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // labelTempoValue
+            // 
+            this.labelTempoValue.Location = new System.Drawing.Point(87, 620);
+            this.labelTempoValue.Name = "labelTempoValue";
+            this.labelTempoValue.Size = new System.Drawing.Size(70, 32);
+            this.labelTempoValue.TabIndex = 95;
+            this.labelTempoValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // checkBoxSuppressVocals
+            // 
+            this.checkBoxSuppressVocals.AutoSize = true;
+            this.checkBoxSuppressVocals.Location = new System.Drawing.Point(956, 584);
+            this.checkBoxSuppressVocals.Name = "checkBoxSuppressVocals";
+            this.checkBoxSuppressVocals.Size = new System.Drawing.Size(215, 36);
+            this.checkBoxSuppressVocals.TabIndex = 94;
+            this.checkBoxSuppressVocals.Text = "Suppress Vocals";
+            this.checkBoxSuppressVocals.UseVisualStyleBackColor = true;
+            this.checkBoxSuppressVocals.CheckedChanged += new System.EventHandler(this.checkBoxSuppressVocals_CheckedChanged);
+            // 
+            // checkBoxSwapLR
+            // 
+            this.checkBoxSwapLR.AutoSize = true;
+            this.checkBoxSwapLR.Location = new System.Drawing.Point(956, 542);
+            this.checkBoxSwapLR.Name = "checkBoxSwapLR";
+            this.checkBoxSwapLR.Size = new System.Drawing.Size(143, 36);
+            this.checkBoxSwapLR.TabIndex = 93;
+            this.checkBoxSwapLR.Text = "Swap L/R";
+            this.checkBoxSwapLR.UseVisualStyleBackColor = true;
+            this.checkBoxSwapLR.CheckedChanged += new System.EventHandler(this.checkBoxSwapLR_CheckedChanged);
+            // 
+            // labelChannel
+            // 
+            this.labelChannel.AutoSize = true;
+            this.labelChannel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelChannel.Location = new System.Drawing.Point(946, 60);
+            this.labelChannel.Name = "labelChannel";
+            this.labelChannel.Size = new System.Drawing.Size(106, 32);
+            this.labelChannel.TabIndex = 92;
+            this.labelChannel.Text = "Channel";
+            // 
+            // toolStripChannels
+            // 
+            this.toolStripChannels.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.toolStripChannels.BackColor = System.Drawing.SystemColors.Control;
+            this.toolStripChannels.CanOverflow = false;
+            this.toolStripChannels.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStripChannels.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripChannels.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.toolStripChannels.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.buttonChannelBoth,
+            this.buttonChannelLeft,
+            this.buttonChannelRight,
+            this.buttonChannelDualMono});
+            this.toolStripChannels.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
+            this.toolStripChannels.Location = new System.Drawing.Point(956, 95);
+            this.toolStripChannels.Name = "toolStripChannels";
+            this.toolStripChannels.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.toolStripChannels.Size = new System.Drawing.Size(96, 170);
+            this.toolStripChannels.TabIndex = 91;
+            this.toolStripChannels.Text = "toolStripChannels";
+            this.toolStripChannels.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStripChannels_ItemClicked);
+            // 
+            // buttonChannelBoth
+            // 
+            this.buttonChannelBoth.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.buttonChannelBoth.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonChannelBoth.Image = ((System.Drawing.Image)(resources.GetObject("buttonChannelBoth.Image")));
+            this.buttonChannelBoth.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonChannelBoth.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonChannelBoth.Name = "buttonChannelBoth";
+            this.buttonChannelBoth.Size = new System.Drawing.Size(93, 36);
+            this.buttonChannelBoth.Text = "BOTH";
+            this.buttonChannelBoth.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonChannelBoth.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
+            // 
+            // buttonChannelLeft
+            // 
+            this.buttonChannelLeft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.buttonChannelLeft.Image = ((System.Drawing.Image)(resources.GetObject("buttonChannelLeft.Image")));
+            this.buttonChannelLeft.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonChannelLeft.Name = "buttonChannelLeft";
+            this.buttonChannelLeft.Size = new System.Drawing.Size(93, 36);
+            this.buttonChannelLeft.Text = "LEFT";
+            this.buttonChannelLeft.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // buttonChannelRight
+            // 
+            this.buttonChannelRight.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.buttonChannelRight.Image = ((System.Drawing.Image)(resources.GetObject("buttonChannelRight.Image")));
+            this.buttonChannelRight.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonChannelRight.Name = "buttonChannelRight";
+            this.buttonChannelRight.Size = new System.Drawing.Size(93, 36);
+            this.buttonChannelRight.Text = "RIGHT";
+            this.buttonChannelRight.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // buttonChannelDualMono
+            // 
+            this.buttonChannelDualMono.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.buttonChannelDualMono.Image = ((System.Drawing.Image)(resources.GetObject("buttonChannelDualMono.Image")));
+            this.buttonChannelDualMono.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonChannelDualMono.Name = "buttonChannelDualMono";
+            this.buttonChannelDualMono.Size = new System.Drawing.Size(93, 36);
+            this.buttonChannelDualMono.Text = "MONO";
+            this.buttonChannelDualMono.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // labelEQMid
+            // 
+            this.labelEQMid.AutoSize = true;
+            this.labelEQMid.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelEQMid.Location = new System.Drawing.Point(754, 60);
+            this.labelEQMid.Name = "labelEQMid";
+            this.labelEQMid.Size = new System.Drawing.Size(59, 32);
+            this.labelEQMid.TabIndex = 90;
+            this.labelEQMid.Text = "Mid";
+            // 
+            // trackBarEQHi
+            // 
+            this.trackBarEQHi.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
+            this.trackBarEQHi.LargeChange = 10;
+            this.trackBarEQHi.Location = new System.Drawing.Point(820, 95);
+            this.trackBarEQHi.Maximum = 100;
+            this.trackBarEQHi.Minimum = -100;
+            this.trackBarEQHi.Name = "trackBarEQHi";
+            this.trackBarEQHi.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trackBarEQHi.Size = new System.Drawing.Size(90, 538);
+            this.trackBarEQHi.SmallChange = 5;
+            this.trackBarEQHi.TabIndex = 89;
+            this.trackBarEQHi.TickFrequency = 20;
+            this.trackBarEQHi.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.trackBarEQHi.ValueChanged += new System.EventHandler(this.trackBarEQHi_ValueChanged);
+            // 
+            // labelEQHi
+            // 
+            this.labelEQHi.AutoSize = true;
+            this.labelEQHi.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelEQHi.Location = new System.Drawing.Point(831, 60);
+            this.labelEQHi.Name = "labelEQHi";
+            this.labelEQHi.Size = new System.Drawing.Size(39, 32);
+            this.labelEQHi.TabIndex = 88;
+            this.labelEQHi.Text = "Hi";
+            // 
+            // trackBarEQMid
+            // 
+            this.trackBarEQMid.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
+            this.trackBarEQMid.LargeChange = 10;
+            this.trackBarEQMid.Location = new System.Drawing.Point(749, 95);
+            this.trackBarEQMid.Maximum = 100;
+            this.trackBarEQMid.Minimum = -100;
+            this.trackBarEQMid.Name = "trackBarEQMid";
+            this.trackBarEQMid.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trackBarEQMid.Size = new System.Drawing.Size(90, 538);
+            this.trackBarEQMid.SmallChange = 5;
+            this.trackBarEQMid.TabIndex = 87;
+            this.trackBarEQMid.TickFrequency = 20;
+            this.trackBarEQMid.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.trackBarEQMid.ValueChanged += new System.EventHandler(this.trackBarEQMid_ValueChanged);
+            // 
+            // labelEQLow
+            // 
+            this.labelEQLow.AutoSize = true;
+            this.labelEQLow.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelEQLow.Location = new System.Drawing.Point(679, 60);
+            this.labelEQLow.Name = "labelEQLow";
+            this.labelEQLow.Size = new System.Drawing.Size(60, 32);
+            this.labelEQLow.TabIndex = 86;
+            this.labelEQLow.Text = "Low";
+            // 
+            // labelEQMin100pc
+            // 
+            this.labelEQMin100pc.AutoSize = true;
+            this.labelEQMin100pc.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelEQMin100pc.Location = new System.Drawing.Point(621, 595);
+            this.labelEQMin100pc.Name = "labelEQMin100pc";
+            this.labelEQMin100pc.Size = new System.Drawing.Size(64, 25);
+            this.labelEQMin100pc.TabIndex = 85;
+            this.labelEQMin100pc.Text = "-100%";
+            this.labelEQMin100pc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelEQ0pc
+            // 
+            this.labelEQ0pc.AutoSize = true;
+            this.labelEQ0pc.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelEQ0pc.Location = new System.Drawing.Point(648, 350);
+            this.labelEQ0pc.Name = "labelEQ0pc";
+            this.labelEQ0pc.Size = new System.Drawing.Size(37, 25);
+            this.labelEQ0pc.TabIndex = 84;
+            this.labelEQ0pc.Text = "0%";
+            this.labelEQ0pc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelEQ100pc
+            // 
+            this.labelEQ100pc.AutoSize = true;
+            this.labelEQ100pc.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelEQ100pc.Location = new System.Drawing.Point(628, 107);
+            this.labelEQ100pc.Name = "labelEQ100pc";
+            this.labelEQ100pc.Size = new System.Drawing.Size(57, 25);
+            this.labelEQ100pc.TabIndex = 83;
+            this.labelEQ100pc.Text = "100%";
+            this.labelEQ100pc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelEqualizer
+            // 
+            this.labelEqualizer.AutoSize = true;
+            this.labelEqualizer.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelEqualizer.Location = new System.Drawing.Point(720, 28);
+            this.labelEqualizer.Name = "labelEqualizer";
+            this.labelEqualizer.Size = new System.Drawing.Size(119, 32);
+            this.labelEqualizer.TabIndex = 82;
+            this.labelEqualizer.Text = "Equalizer";
+            // 
+            // trackBarEQLow
+            // 
+            this.trackBarEQLow.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
+            this.trackBarEQLow.LargeChange = 10;
+            this.trackBarEQLow.Location = new System.Drawing.Point(679, 95);
+            this.trackBarEQLow.Maximum = 100;
+            this.trackBarEQLow.Minimum = -100;
+            this.trackBarEQLow.Name = "trackBarEQLow";
+            this.trackBarEQLow.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trackBarEQLow.Size = new System.Drawing.Size(90, 538);
+            this.trackBarEQLow.SmallChange = 5;
+            this.trackBarEQLow.TabIndex = 81;
+            this.trackBarEQLow.TickFrequency = 20;
+            this.trackBarEQLow.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.trackBarEQLow.ValueChanged += new System.EventHandler(this.trackBarEQLow_ValueChanged);
+            // 
+            // labelVolume25pc
+            // 
+            this.labelVolume25pc.AutoSize = true;
+            this.labelVolume25pc.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelVolume25pc.Location = new System.Drawing.Point(432, 470);
+            this.labelVolume25pc.Name = "labelVolume25pc";
+            this.labelVolume25pc.Size = new System.Drawing.Size(47, 25);
+            this.labelVolume25pc.TabIndex = 80;
+            this.labelVolume25pc.Text = "25%";
+            this.labelVolume25pc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelVolume75pc
+            // 
+            this.labelVolume75pc.AutoSize = true;
+            this.labelVolume75pc.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelVolume75pc.Location = new System.Drawing.Point(432, 223);
+            this.labelVolume75pc.Name = "labelVolume75pc";
+            this.labelVolume75pc.Size = new System.Drawing.Size(47, 25);
+            this.labelVolume75pc.TabIndex = 79;
+            this.labelVolume75pc.Text = "75%";
+            this.labelVolume75pc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelVolume0pc
+            // 
+            this.labelVolume0pc.AutoSize = true;
+            this.labelVolume0pc.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelVolume0pc.Location = new System.Drawing.Point(442, 595);
+            this.labelVolume0pc.Name = "labelVolume0pc";
+            this.labelVolume0pc.Size = new System.Drawing.Size(37, 25);
+            this.labelVolume0pc.TabIndex = 78;
+            this.labelVolume0pc.Text = "0%";
+            this.labelVolume0pc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelVolume50pc
+            // 
+            this.labelVolume50pc.AutoSize = true;
+            this.labelVolume50pc.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelVolume50pc.Location = new System.Drawing.Point(432, 350);
+            this.labelVolume50pc.Name = "labelVolume50pc";
+            this.labelVolume50pc.Size = new System.Drawing.Size(47, 25);
+            this.labelVolume50pc.TabIndex = 77;
+            this.labelVolume50pc.Text = "50%";
+            this.labelVolume50pc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelVolume100pc
+            // 
+            this.labelVolume100pc.AutoSize = true;
+            this.labelVolume100pc.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelVolume100pc.Location = new System.Drawing.Point(422, 107);
+            this.labelVolume100pc.Name = "labelVolume100pc";
+            this.labelVolume100pc.Size = new System.Drawing.Size(57, 25);
+            this.labelVolume100pc.TabIndex = 76;
+            this.labelVolume100pc.Text = "100%";
+            this.labelVolume100pc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(452, 60);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(100, 32);
+            this.label5.TabIndex = 75;
+            this.label5.Text = "Volume";
+            // 
+            // trackBarVolume
+            // 
+            this.trackBarVolume.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
+            this.trackBarVolume.Location = new System.Drawing.Point(473, 95);
+            this.trackBarVolume.Maximum = 100;
+            this.trackBarVolume.Name = "trackBarVolume";
+            this.trackBarVolume.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trackBarVolume.Size = new System.Drawing.Size(90, 538);
+            this.trackBarVolume.TabIndex = 74;
+            this.trackBarVolume.TickFrequency = 10;
+            this.trackBarVolume.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.trackBarVolume.Value = 75;
+            this.trackBarVolume.ValueChanged += new System.EventHandler(this.trackBarVolume_ValueChanged);
+            // 
+            // labelPitch8vb
+            // 
+            this.labelPitch8vb.AutoSize = true;
+            this.labelPitch8vb.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelPitch8vb.Location = new System.Drawing.Point(210, 595);
+            this.labelPitch8vb.Name = "labelPitch8vb";
+            this.labelPitch8vb.Size = new System.Drawing.Size(42, 25);
+            this.labelPitch8vb.TabIndex = 73;
+            this.labelPitch8vb.Text = "8vb";
+            this.labelPitch8vb.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelPitch0
+            // 
+            this.labelPitch0.AutoSize = true;
+            this.labelPitch0.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelPitch0.Location = new System.Drawing.Point(210, 350);
+            this.labelPitch0.Name = "labelPitch0";
+            this.labelPitch0.Size = new System.Drawing.Size(22, 25);
+            this.labelPitch0.TabIndex = 72;
+            this.labelPitch0.Text = "0";
+            this.labelPitch0.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelPitch8va
+            // 
+            this.labelPitch8va.AutoSize = true;
+            this.labelPitch8va.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelPitch8va.Location = new System.Drawing.Point(210, 107);
+            this.labelPitch8va.Name = "labelPitch8va";
+            this.labelPitch8va.Size = new System.Drawing.Size(40, 25);
+            this.labelPitch8va.TabIndex = 71;
+            this.labelPitch8va.Text = "8va";
+            this.labelPitch8va.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelPitch
+            // 
+            this.labelPitch.AutoSize = true;
+            this.labelPitch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelPitch.Location = new System.Drawing.Point(251, 60);
+            this.labelPitch.Name = "labelPitch";
+            this.labelPitch.Size = new System.Drawing.Size(71, 32);
+            this.labelPitch.TabIndex = 70;
+            this.labelPitch.Text = "Pitch";
+            // 
+            // trackBarPitch
+            // 
+            this.trackBarPitch.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
+            this.trackBarPitch.LargeChange = 0;
+            this.trackBarPitch.Location = new System.Drawing.Point(251, 95);
+            this.trackBarPitch.Maximum = 96;
+            this.trackBarPitch.Minimum = -96;
+            this.trackBarPitch.Name = "trackBarPitch";
+            this.trackBarPitch.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trackBarPitch.Size = new System.Drawing.Size(90, 538);
+            this.trackBarPitch.SmallChange = 2;
+            this.trackBarPitch.TabIndex = 69;
+            this.trackBarPitch.TickFrequency = 8;
+            this.trackBarPitch.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.trackBarPitch.ValueChanged += new System.EventHandler(this.trackBarPitch_ValueChanged);
+            // 
+            // labelX15
+            // 
+            this.labelX15.AutoSize = true;
+            this.labelX15.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelX15.Location = new System.Drawing.Point(46, 223);
+            this.labelX15.Name = "labelX15";
+            this.labelX15.Size = new System.Drawing.Size(44, 25);
+            this.labelX15.TabIndex = 68;
+            this.labelX15.Text = "x1.5";
+            this.labelX15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelX05
+            // 
+            this.labelX05.AutoSize = true;
+            this.labelX05.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelX05.Location = new System.Drawing.Point(46, 479);
+            this.labelX05.Name = "labelX05";
+            this.labelX05.Size = new System.Drawing.Size(44, 25);
+            this.labelX05.TabIndex = 67;
+            this.labelX05.Text = "x0.5";
+            this.labelX05.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelX01
+            // 
+            this.labelX01.AutoSize = true;
+            this.labelX01.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelX01.Location = new System.Drawing.Point(46, 595);
+            this.labelX01.Name = "labelX01";
+            this.labelX01.Size = new System.Drawing.Size(44, 25);
+            this.labelX01.TabIndex = 66;
+            this.labelX01.Text = "x0.1";
+            this.labelX01.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelX10
+            // 
+            this.labelX10.AutoSize = true;
+            this.labelX10.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelX10.Location = new System.Drawing.Point(46, 362);
+            this.labelX10.Name = "labelX10";
+            this.labelX10.Size = new System.Drawing.Size(44, 25);
+            this.labelX10.TabIndex = 65;
+            this.labelX10.Text = "x1.0";
+            this.labelX10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelX20
+            // 
+            this.labelX20.AutoSize = true;
+            this.labelX20.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelX20.Location = new System.Drawing.Point(46, 107);
+            this.labelX20.Name = "labelX20";
+            this.labelX20.Size = new System.Drawing.Size(44, 25);
+            this.labelX20.TabIndex = 64;
+            this.labelX20.Text = "x2.0";
+            this.labelX20.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(75, 60);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 32);
+            this.label1.TabIndex = 63;
+            this.label1.Text = "Tempo";
+            // 
+            // trackBarTempo
+            // 
+            this.trackBarTempo.Cursor = System.Windows.Forms.Cursors.NoMoveVert;
+            this.trackBarTempo.LargeChange = 0;
+            this.trackBarTempo.Location = new System.Drawing.Point(87, 95);
+            this.trackBarTempo.Maximum = 200;
+            this.trackBarTempo.Minimum = 10;
+            this.trackBarTempo.Name = "trackBarTempo";
+            this.trackBarTempo.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trackBarTempo.Size = new System.Drawing.Size(90, 538);
+            this.trackBarTempo.SmallChange = 2;
+            this.trackBarTempo.TabIndex = 62;
+            this.trackBarTempo.TickFrequency = 10;
+            this.trackBarTempo.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.trackBarTempo.Value = 100;
+            this.trackBarTempo.ValueChanged += new System.EventHandler(this.trackBarTempo_ValueChanged);
+            // 
+            // panelLoop
+            // 
+            this.panelLoop.Controls.Add(this.upDownCurrentMilliseconds);
+            this.panelLoop.Controls.Add(this.upDownCurrentSeconds);
+            this.panelLoop.Controls.Add(this.upDownCurrentMinutes);
+            this.panelLoop.Controls.Add(this.buttonEndLoopNow);
+            this.panelLoop.Controls.Add(this.upDownEndLoopMilliseconds);
+            this.panelLoop.Controls.Add(this.upDownEndLoopSeconds);
+            this.panelLoop.Controls.Add(this.upDownEndLoopMinutes);
+            this.panelLoop.Controls.Add(this.labelLoopEnd);
+            this.panelLoop.Controls.Add(this.buttonStartLoopNow);
+            this.panelLoop.Controls.Add(this.upDownStartLoopMilliseconds);
+            this.panelLoop.Controls.Add(this.upDownStartLoopSeconds);
+            this.panelLoop.Controls.Add(this.upDownStartLoopMinutes);
+            this.panelLoop.Controls.Add(this.label2);
+            this.panelLoop.Controls.Add(this.checkBoxLoop);
+            this.panelLoop.Location = new System.Drawing.Point(12, 327);
+            this.panelLoop.Name = "panelLoop";
+            this.panelLoop.Size = new System.Drawing.Size(465, 213);
+            this.panelLoop.TabIndex = 63;
+            // 
+            // upDownCurrentMilliseconds
+            // 
+            this.upDownCurrentMilliseconds.Location = new System.Drawing.Point(344, 15);
+            this.upDownCurrentMilliseconds.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.upDownCurrentMilliseconds.Name = "upDownCurrentMilliseconds";
+            this.upDownCurrentMilliseconds.Size = new System.Drawing.Size(83, 39);
+            this.upDownCurrentMilliseconds.TabIndex = 117;
+            this.upDownCurrentMilliseconds.ValueChanged += new System.EventHandler(this.upDownCurrent_ValueChanged);
+            // 
+            // upDownCurrentSeconds
+            // 
+            this.upDownCurrentSeconds.Location = new System.Drawing.Point(255, 15);
+            this.upDownCurrentSeconds.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.upDownCurrentSeconds.Name = "upDownCurrentSeconds";
+            this.upDownCurrentSeconds.Size = new System.Drawing.Size(83, 39);
+            this.upDownCurrentSeconds.TabIndex = 116;
+            this.upDownCurrentSeconds.ValueChanged += new System.EventHandler(this.upDownCurrent_ValueChanged);
+            // 
+            // upDownCurrentMinutes
+            // 
+            this.upDownCurrentMinutes.Location = new System.Drawing.Point(166, 15);
+            this.upDownCurrentMinutes.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.upDownCurrentMinutes.Name = "upDownCurrentMinutes";
+            this.upDownCurrentMinutes.Size = new System.Drawing.Size(83, 39);
+            this.upDownCurrentMinutes.TabIndex = 115;
+            this.upDownCurrentMinutes.ValueChanged += new System.EventHandler(this.upDownCurrent_ValueChanged);
+            // 
+            // buttonEndLoopNow
+            // 
+            this.buttonEndLoopNow.Location = new System.Drawing.Point(367, 124);
+            this.buttonEndLoopNow.Name = "buttonEndLoopNow";
+            this.buttonEndLoopNow.Size = new System.Drawing.Size(71, 41);
+            this.buttonEndLoopNow.TabIndex = 114;
+            this.buttonEndLoopNow.Text = "Now";
+            this.buttonEndLoopNow.UseVisualStyleBackColor = true;
+            this.buttonEndLoopNow.Click += new System.EventHandler(this.buttonEndLoopNow_Click);
+            // 
+            // upDownEndLoopMilliseconds
+            // 
+            this.upDownEndLoopMilliseconds.Location = new System.Drawing.Point(259, 124);
+            this.upDownEndLoopMilliseconds.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.upDownEndLoopMilliseconds.Name = "upDownEndLoopMilliseconds";
+            this.upDownEndLoopMilliseconds.Size = new System.Drawing.Size(83, 39);
+            this.upDownEndLoopMilliseconds.TabIndex = 113;
+            this.upDownEndLoopMilliseconds.ValueChanged += new System.EventHandler(this.upDownEndLoopMilliseconds_ValueChanged);
+            // 
+            // upDownEndLoopSeconds
+            // 
+            this.upDownEndLoopSeconds.Location = new System.Drawing.Point(170, 124);
+            this.upDownEndLoopSeconds.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.upDownEndLoopSeconds.Name = "upDownEndLoopSeconds";
+            this.upDownEndLoopSeconds.Size = new System.Drawing.Size(83, 39);
+            this.upDownEndLoopSeconds.TabIndex = 112;
+            this.upDownEndLoopSeconds.ValueChanged += new System.EventHandler(this.upDownEndLoopSeconds_ValueChanged);
+            // 
+            // upDownEndLoopMinutes
+            // 
+            this.upDownEndLoopMinutes.Location = new System.Drawing.Point(81, 124);
+            this.upDownEndLoopMinutes.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.upDownEndLoopMinutes.Name = "upDownEndLoopMinutes";
+            this.upDownEndLoopMinutes.Size = new System.Drawing.Size(83, 39);
+            this.upDownEndLoopMinutes.TabIndex = 111;
+            this.upDownEndLoopMinutes.ValueChanged += new System.EventHandler(this.upDownEndLoopMinutes_ValueChanged);
+            // 
+            // labelLoopEnd
+            // 
+            this.labelLoopEnd.AutoSize = true;
+            this.labelLoopEnd.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelLoopEnd.Location = new System.Drawing.Point(8, 126);
+            this.labelLoopEnd.Name = "labelLoopEnd";
+            this.labelLoopEnd.Size = new System.Drawing.Size(59, 32);
+            this.labelLoopEnd.TabIndex = 110;
+            this.labelLoopEnd.Text = "End:";
+            // 
+            // buttonStartLoopNow
+            // 
+            this.buttonStartLoopNow.Location = new System.Drawing.Point(367, 77);
+            this.buttonStartLoopNow.Name = "buttonStartLoopNow";
+            this.buttonStartLoopNow.Size = new System.Drawing.Size(71, 41);
+            this.buttonStartLoopNow.TabIndex = 109;
+            this.buttonStartLoopNow.Text = "Now";
+            this.buttonStartLoopNow.UseVisualStyleBackColor = true;
+            this.buttonStartLoopNow.Click += new System.EventHandler(this.buttonStartLoopNow_Click);
+            // 
+            // upDownStartLoopMilliseconds
+            // 
+            this.upDownStartLoopMilliseconds.Location = new System.Drawing.Point(259, 77);
+            this.upDownStartLoopMilliseconds.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.upDownStartLoopMilliseconds.Name = "upDownStartLoopMilliseconds";
+            this.upDownStartLoopMilliseconds.Size = new System.Drawing.Size(83, 39);
+            this.upDownStartLoopMilliseconds.TabIndex = 108;
+            this.upDownStartLoopMilliseconds.ValueChanged += new System.EventHandler(this.upDownStartLoopMilliseconds_ValueChanged);
+            // 
+            // upDownStartLoopSeconds
+            // 
+            this.upDownStartLoopSeconds.Location = new System.Drawing.Point(170, 77);
+            this.upDownStartLoopSeconds.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.upDownStartLoopSeconds.Name = "upDownStartLoopSeconds";
+            this.upDownStartLoopSeconds.Size = new System.Drawing.Size(83, 39);
+            this.upDownStartLoopSeconds.TabIndex = 107;
+            this.upDownStartLoopSeconds.ValueChanged += new System.EventHandler(this.upDownStartLoopSeconds_ValueChanged);
+            // 
+            // upDownStartLoopMinutes
+            // 
+            this.upDownStartLoopMinutes.Location = new System.Drawing.Point(81, 77);
+            this.upDownStartLoopMinutes.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.upDownStartLoopMinutes.Name = "upDownStartLoopMinutes";
+            this.upDownStartLoopMinutes.Size = new System.Drawing.Size(83, 39);
+            this.upDownStartLoopMinutes.TabIndex = 106;
+            this.upDownStartLoopMinutes.ValueChanged += new System.EventHandler(this.upDownStartLoopMinutes_ValueChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(8, 79);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 32);
+            this.label2.TabIndex = 105;
+            this.label2.Text = "Start:";
+            // 
+            // checkBoxLoop
+            // 
+            this.checkBoxLoop.AutoSize = true;
+            this.checkBoxLoop.Location = new System.Drawing.Point(11, 11);
+            this.checkBoxLoop.Name = "checkBoxLoop";
+            this.checkBoxLoop.Size = new System.Drawing.Size(99, 36);
+            this.checkBoxLoop.TabIndex = 0;
+            this.checkBoxLoop.Text = "Loop";
+            this.checkBoxLoop.UseVisualStyleBackColor = true;
+            this.checkBoxLoop.CheckedChanged += new System.EventHandler(this.checkBoxLoop_CheckedChanged);
+            // 
+            // panelPresets
+            // 
+            this.panelPresets.Controls.Add(this.buttonReset);
+            this.panelPresets.Controls.Add(this.buttonSavePreset);
+            this.panelPresets.Controls.Add(this.labelPreset4);
+            this.panelPresets.Controls.Add(this.labelPreset8);
+            this.panelPresets.Controls.Add(this.buttonPreset8);
+            this.panelPresets.Controls.Add(this.buttonPreset4);
+            this.panelPresets.Controls.Add(this.labelPreset3);
+            this.panelPresets.Controls.Add(this.labelPreset7);
+            this.panelPresets.Controls.Add(this.buttonPreset7);
+            this.panelPresets.Controls.Add(this.button4);
+            this.panelPresets.Controls.Add(this.labelPreset2);
+            this.panelPresets.Controls.Add(this.labelPreset6);
+            this.panelPresets.Controls.Add(this.buttonPreset6);
+            this.panelPresets.Controls.Add(this.button2);
+            this.panelPresets.Controls.Add(this.labelPreset1);
+            this.panelPresets.Controls.Add(this.labelPreset5);
+            this.panelPresets.Controls.Add(this.buttonPreset5);
+            this.panelPresets.Controls.Add(this.buttonPreset1);
+            this.panelPresets.Location = new System.Drawing.Point(485, 327);
+            this.panelPresets.Name = "panelPresets";
+            this.panelPresets.Size = new System.Drawing.Size(705, 213);
+            this.panelPresets.TabIndex = 64;
+            // 
+            // buttonReset
+            // 
+            this.buttonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonReset.Image = ((System.Drawing.Image)(resources.GetObject("buttonReset.Image")));
+            this.buttonReset.Location = new System.Drawing.Point(10, 59);
+            this.buttonReset.Name = "buttonReset";
+            this.buttonReset.Size = new System.Drawing.Size(42, 41);
+            this.buttonReset.TabIndex = 126;
+            this.buttonReset.UseVisualStyleBackColor = true;
+            // 
+            // buttonSavePreset
+            // 
+            this.buttonSavePreset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSavePreset.Image = ((System.Drawing.Image)(resources.GetObject("buttonSavePreset.Image")));
+            this.buttonSavePreset.Location = new System.Drawing.Point(10, 11);
+            this.buttonSavePreset.Name = "buttonSavePreset";
+            this.buttonSavePreset.Size = new System.Drawing.Size(42, 41);
+            this.buttonSavePreset.TabIndex = 65;
+            this.buttonSavePreset.UseVisualStyleBackColor = true;
+            // 
+            // labelPreset4
+            // 
+            this.labelPreset4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelPreset4.Location = new System.Drawing.Point(55, 157);
+            this.labelPreset4.Margin = new System.Windows.Forms.Padding(0);
+            this.labelPreset4.Name = "labelPreset4";
+            this.labelPreset4.Size = new System.Drawing.Size(35, 32);
+            this.labelPreset4.TabIndex = 125;
+            this.labelPreset4.Text = "4:";
+            this.labelPreset4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelPreset8
+            // 
+            this.labelPreset8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelPreset8.Location = new System.Drawing.Point(373, 157);
+            this.labelPreset8.Margin = new System.Windows.Forms.Padding(0);
+            this.labelPreset8.Name = "labelPreset8";
+            this.labelPreset8.Size = new System.Drawing.Size(35, 32);
+            this.labelPreset8.TabIndex = 124;
+            this.labelPreset8.Text = "8:";
+            this.labelPreset8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // buttonPreset8
+            // 
+            this.buttonPreset8.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonPreset8.Location = new System.Drawing.Point(411, 153);
+            this.buttonPreset8.Name = "buttonPreset8";
+            this.buttonPreset8.Size = new System.Drawing.Size(276, 41);
+            this.buttonPreset8.TabIndex = 123;
+            this.buttonPreset8.Text = "<Preset not defined>";
+            this.buttonPreset8.UseVisualStyleBackColor = true;
+            // 
+            // buttonPreset4
+            // 
+            this.buttonPreset4.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonPreset4.Location = new System.Drawing.Point(90, 153);
+            this.buttonPreset4.Name = "buttonPreset4";
+            this.buttonPreset4.Size = new System.Drawing.Size(276, 41);
+            this.buttonPreset4.TabIndex = 122;
+            this.buttonPreset4.Text = "<Preset not defined>";
+            this.buttonPreset4.UseVisualStyleBackColor = true;
+            // 
+            // labelPreset3
+            // 
+            this.labelPreset3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelPreset3.Location = new System.Drawing.Point(55, 110);
+            this.labelPreset3.Margin = new System.Windows.Forms.Padding(0);
+            this.labelPreset3.Name = "labelPreset3";
+            this.labelPreset3.Size = new System.Drawing.Size(35, 32);
+            this.labelPreset3.TabIndex = 121;
+            this.labelPreset3.Text = "3:";
+            this.labelPreset3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelPreset7
+            // 
+            this.labelPreset7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelPreset7.Location = new System.Drawing.Point(373, 110);
+            this.labelPreset7.Margin = new System.Windows.Forms.Padding(0);
+            this.labelPreset7.Name = "labelPreset7";
+            this.labelPreset7.Size = new System.Drawing.Size(35, 32);
+            this.labelPreset7.TabIndex = 120;
+            this.labelPreset7.Text = "7:";
+            this.labelPreset7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // buttonPreset7
+            // 
+            this.buttonPreset7.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonPreset7.Location = new System.Drawing.Point(411, 106);
+            this.buttonPreset7.Name = "buttonPreset7";
+            this.buttonPreset7.Size = new System.Drawing.Size(276, 41);
+            this.buttonPreset7.TabIndex = 119;
+            this.buttonPreset7.Text = "<Preset not defined>";
+            this.buttonPreset7.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button4.Location = new System.Drawing.Point(90, 106);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(276, 41);
+            this.button4.TabIndex = 118;
+            this.button4.Text = "<Preset not defined>";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // labelPreset2
+            // 
+            this.labelPreset2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelPreset2.Location = new System.Drawing.Point(55, 63);
+            this.labelPreset2.Margin = new System.Windows.Forms.Padding(0);
+            this.labelPreset2.Name = "labelPreset2";
+            this.labelPreset2.Size = new System.Drawing.Size(35, 32);
+            this.labelPreset2.TabIndex = 117;
+            this.labelPreset2.Text = "2:";
+            this.labelPreset2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelPreset6
+            // 
+            this.labelPreset6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelPreset6.Location = new System.Drawing.Point(373, 63);
+            this.labelPreset6.Margin = new System.Windows.Forms.Padding(0);
+            this.labelPreset6.Name = "labelPreset6";
+            this.labelPreset6.Size = new System.Drawing.Size(35, 32);
+            this.labelPreset6.TabIndex = 116;
+            this.labelPreset6.Text = "6:";
+            this.labelPreset6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // buttonPreset6
+            // 
+            this.buttonPreset6.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonPreset6.Location = new System.Drawing.Point(411, 59);
+            this.buttonPreset6.Name = "buttonPreset6";
+            this.buttonPreset6.Size = new System.Drawing.Size(276, 41);
+            this.buttonPreset6.TabIndex = 115;
+            this.buttonPreset6.Text = "<Preset not defined>";
+            this.buttonPreset6.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button2.Location = new System.Drawing.Point(90, 59);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(276, 41);
+            this.button2.TabIndex = 114;
+            this.button2.Text = "<Preset not defined>";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // labelPreset1
+            // 
+            this.labelPreset1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelPreset1.Location = new System.Drawing.Point(55, 15);
+            this.labelPreset1.Margin = new System.Windows.Forms.Padding(0);
+            this.labelPreset1.Name = "labelPreset1";
+            this.labelPreset1.Size = new System.Drawing.Size(35, 32);
+            this.labelPreset1.TabIndex = 113;
+            this.labelPreset1.Text = "1:";
+            this.labelPreset1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelPreset5
+            // 
+            this.labelPreset5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelPreset5.Location = new System.Drawing.Point(373, 15);
+            this.labelPreset5.Margin = new System.Windows.Forms.Padding(0);
+            this.labelPreset5.Name = "labelPreset5";
+            this.labelPreset5.Size = new System.Drawing.Size(35, 32);
+            this.labelPreset5.TabIndex = 112;
+            this.labelPreset5.Text = "5:";
+            this.labelPreset5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // buttonPreset5
+            // 
+            this.buttonPreset5.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonPreset5.Location = new System.Drawing.Point(411, 11);
+            this.buttonPreset5.Name = "buttonPreset5";
+            this.buttonPreset5.Size = new System.Drawing.Size(276, 41);
+            this.buttonPreset5.TabIndex = 111;
+            this.buttonPreset5.Text = "<Preset not defined>";
+            this.buttonPreset5.UseVisualStyleBackColor = true;
+            // 
+            // buttonPreset1
+            // 
+            this.buttonPreset1.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonPreset1.Location = new System.Drawing.Point(90, 11);
+            this.buttonPreset1.Name = "buttonPreset1";
+            this.buttonPreset1.Size = new System.Drawing.Size(276, 41);
+            this.buttonPreset1.TabIndex = 110;
+            this.buttonPreset1.Text = "<Preset not defined>";
+            this.buttonPreset1.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1204, 1090);
+            this.ClientSize = new System.Drawing.Size(1214, 1347);
+            this.Controls.Add(this.panelPresets);
+            this.Controls.Add(this.panelLoop);
+            this.Controls.Add(this.panelControls);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.buttonPlay);
             this.Controls.Add(this.buttonOpenFile);
-            this.Controls.Add(this.comboBoxTimeStretchProfile);
-            this.Controls.Add(this.labelTimeStretchProfile);
             this.Controls.Add(this.labelPositionValue);
             this.Controls.Add(this.labelPlayDuration);
             this.Controls.Add(this.labelPlayDuration3Q);
             this.Controls.Add(this.labelPlayDuration2Q);
             this.Controls.Add(this.labelPlayDuration1Q);
             this.Controls.Add(this.labelPlayDuration0Q);
-            this.Controls.Add(this.labelEQHiValue);
-            this.Controls.Add(this.labelEQMidValue);
-            this.Controls.Add(this.labelEQLowValue);
-            this.Controls.Add(this.labelVolumeValue);
-            this.Controls.Add(this.labelSemitones);
-            this.Controls.Add(this.labelPitchValue);
-            this.Controls.Add(this.labelTempoValue);
-            this.Controls.Add(this.checkBoxSuppressVocals);
-            this.Controls.Add(this.checkBoxSwapLR);
-            this.Controls.Add(this.labelChannel);
-            this.Controls.Add(this.toolStripChannels);
             this.Controls.Add(this.labelPosition);
             this.Controls.Add(this.trackBarPlayTime);
-            this.Controls.Add(this.labelEQMid);
-            this.Controls.Add(this.trackBarEQHi);
-            this.Controls.Add(this.labelEQHi);
-            this.Controls.Add(this.trackBarEQMid);
-            this.Controls.Add(this.labelEQLow);
-            this.Controls.Add(this.labelEQMin100pc);
-            this.Controls.Add(this.labelEQ0pc);
-            this.Controls.Add(this.labelEQ100pc);
-            this.Controls.Add(this.labelEqualizer);
-            this.Controls.Add(this.trackBarEQLow);
-            this.Controls.Add(this.labelVolume25pc);
-            this.Controls.Add(this.labelVolume75pc);
-            this.Controls.Add(this.labelVolume0pc);
-            this.Controls.Add(this.labelVolume50pc);
-            this.Controls.Add(this.labelVolume100pc);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.trackBarVolume);
-            this.Controls.Add(this.labelPitch8vb);
-            this.Controls.Add(this.labelPitch0);
-            this.Controls.Add(this.labelPitch8va);
-            this.Controls.Add(this.labelPitch);
-            this.Controls.Add(this.trackBarPitch);
-            this.Controls.Add(this.labelX15);
-            this.Controls.Add(this.labelX05);
-            this.Controls.Add(this.labelX01);
-            this.Controls.Add(this.labelX10);
-            this.Controls.Add(this.labelX20);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.trackBarTempo);
             this.Controls.Add(this.labelCurrentlyPlaying);
             this.Controls.Add(this.labelFilename);
             this.Controls.Add(this.menuStrip);
@@ -929,15 +1439,30 @@ namespace PracticeSession
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarTempo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarPitch)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarVolume)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarEQLow)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarEQMid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarEQHi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarPlayTime)).EndInit();
+            this.panelControls.ResumeLayout(false);
+            this.panelControls.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownCue)).EndInit();
             this.toolStripChannels.ResumeLayout(false);
             this.toolStripChannels.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarEQHi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarEQMid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarEQLow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarVolume)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarPitch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarTempo)).EndInit();
+            this.panelLoop.ResumeLayout(false);
+            this.panelLoop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownCurrentMilliseconds)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownCurrentSeconds)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownCurrentMinutes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownEndLoopMilliseconds)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownEndLoopSeconds)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownEndLoopMinutes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownStartLoopMilliseconds)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownStartLoopSeconds)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownStartLoopMinutes)).EndInit();
+            this.panelPresets.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -949,52 +1474,8 @@ namespace PracticeSession
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Label labelFilename;
         private System.Windows.Forms.Label labelCurrentlyPlaying;
-        private System.Windows.Forms.TrackBar trackBarTempo;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label labelX20;
-        private System.Windows.Forms.Label labelX10;
-        private System.Windows.Forms.Label labelX01;
-        private System.Windows.Forms.Label labelX05;
-        private System.Windows.Forms.Label labelX15;
-        private System.Windows.Forms.Label labelPitch8vb;
-        private System.Windows.Forms.Label labelPitch0;
-        private System.Windows.Forms.Label labelPitch8va;
-        private System.Windows.Forms.Label labelPitch;
-        private System.Windows.Forms.TrackBar trackBarPitch;
-        private System.Windows.Forms.Label labelVolume0pc;
-        private System.Windows.Forms.Label labelVolume50pc;
-        private System.Windows.Forms.Label labelVolume100pc;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TrackBar trackBarVolume;
-        private System.Windows.Forms.Label labelVolume75pc;
-        private System.Windows.Forms.Label labelVolume25pc;
-        private System.Windows.Forms.Label labelEQMin100pc;
-        private System.Windows.Forms.Label labelEQ0pc;
-        private System.Windows.Forms.Label labelEQ100pc;
-        private System.Windows.Forms.Label labelEqualizer;
-        private System.Windows.Forms.TrackBar trackBarEQLow;
-        private System.Windows.Forms.Label labelEQLow;
-        private System.Windows.Forms.Label labelEQHi;
-        private System.Windows.Forms.TrackBar trackBarEQMid;
-        private System.Windows.Forms.Label labelEQMid;
-        private System.Windows.Forms.TrackBar trackBarEQHi;
         private System.Windows.Forms.TrackBar trackBarPlayTime;
         private System.Windows.Forms.Label labelPosition;
-        private System.Windows.Forms.ToolStrip toolStripChannels;
-        private System.Windows.Forms.ToolStripButton buttonChannelBoth;
-        private System.Windows.Forms.ToolStripButton buttonChannelLeft;
-        private System.Windows.Forms.ToolStripButton buttonChannelRight;
-        private System.Windows.Forms.ToolStripButton buttonChannelDualMono;
-        private System.Windows.Forms.Label labelChannel;
-        private System.Windows.Forms.CheckBox checkBoxSwapLR;
-        private System.Windows.Forms.CheckBox checkBoxSuppressVocals;
-        private System.Windows.Forms.Label labelTempoValue;
-        private System.Windows.Forms.Label labelPitchValue;
-        private System.Windows.Forms.Label labelSemitones;
-        private System.Windows.Forms.Label labelVolumeValue;
-        private System.Windows.Forms.Label labelEQLowValue;
-        private System.Windows.Forms.Label labelEQMidValue;
-        private System.Windows.Forms.Label labelEQHiValue;
         private System.Windows.Forms.Label labelPlayDuration0Q;
         private System.Windows.Forms.Label labelPlayDuration1Q;
         private System.Windows.Forms.Label labelPlayDuration2Q;
@@ -1002,8 +1483,6 @@ namespace PracticeSession
         private System.Windows.Forms.Label labelPlayDuration;
         private System.Windows.Forms.Label labelPositionValue;
         private System.Windows.Forms.Timer PlayTimeUpdateTimer;
-        private System.Windows.Forms.Label labelTimeStretchProfile;
-        private System.Windows.Forms.ComboBox comboBoxTimeStretchProfile;
         private System.Windows.Forms.ToolStripMenuItem menuItemFile;
         private System.Windows.Forms.ToolStripMenuItem menuItemExit;
         private System.Windows.Forms.ToolStripMenuItem menuItemRecent1;
@@ -1017,5 +1496,90 @@ namespace PracticeSession
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.Button buttonOpenFile;
         private System.Windows.Forms.Button buttonPlay;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.Panel panelControls;
+        private System.Windows.Forms.Label labelCueSeconds;
+        private System.Windows.Forms.Label labelCue;
+        private System.Windows.Forms.NumericUpDown upDownCue;
+        private System.Windows.Forms.ComboBox comboBoxTimeStretchProfile;
+        private System.Windows.Forms.Label labelTimeStretchProfile;
+        private System.Windows.Forms.Label labelEQHiValue;
+        private System.Windows.Forms.Label labelVolumeValue;
+        private System.Windows.Forms.Label labelSemitones;
+        private System.Windows.Forms.Label labelPitchValue;
+        private System.Windows.Forms.Label labelTempoValue;
+        private System.Windows.Forms.CheckBox checkBoxSuppressVocals;
+        private System.Windows.Forms.CheckBox checkBoxSwapLR;
+        private System.Windows.Forms.Label labelChannel;
+        private System.Windows.Forms.ToolStrip toolStripChannels;
+        private System.Windows.Forms.ToolStripButton buttonChannelBoth;
+        private System.Windows.Forms.ToolStripButton buttonChannelLeft;
+        private System.Windows.Forms.ToolStripButton buttonChannelRight;
+        private System.Windows.Forms.ToolStripButton buttonChannelDualMono;
+        private System.Windows.Forms.Label labelEQMid;
+        private System.Windows.Forms.TrackBar trackBarEQHi;
+        private System.Windows.Forms.Label labelEQHi;
+        private System.Windows.Forms.TrackBar trackBarEQMid;
+        private System.Windows.Forms.Label labelEQLow;
+        private System.Windows.Forms.Label labelEQMin100pc;
+        private System.Windows.Forms.Label labelEQ0pc;
+        private System.Windows.Forms.Label labelEQ100pc;
+        private System.Windows.Forms.Label labelEqualizer;
+        private System.Windows.Forms.TrackBar trackBarEQLow;
+        private System.Windows.Forms.Label labelVolume25pc;
+        private System.Windows.Forms.Label labelVolume75pc;
+        private System.Windows.Forms.Label labelVolume0pc;
+        private System.Windows.Forms.Label labelVolume50pc;
+        private System.Windows.Forms.Label labelVolume100pc;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TrackBar trackBarVolume;
+        private System.Windows.Forms.Label labelPitch8vb;
+        private System.Windows.Forms.Label labelPitch0;
+        private System.Windows.Forms.Label labelPitch8va;
+        private System.Windows.Forms.Label labelPitch;
+        private System.Windows.Forms.TrackBar trackBarPitch;
+        private System.Windows.Forms.Label labelX15;
+        private System.Windows.Forms.Label labelX05;
+        private System.Windows.Forms.Label labelX01;
+        private System.Windows.Forms.Label labelX10;
+        private System.Windows.Forms.Label labelX20;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TrackBar trackBarTempo;
+        private System.Windows.Forms.Panel panelLoop;
+        private System.Windows.Forms.CheckBox checkBoxLoop;
+        private System.Windows.Forms.Button buttonEndLoopNow;
+        private System.Windows.Forms.NumericUpDown upDownEndLoopMilliseconds;
+        private System.Windows.Forms.NumericUpDown upDownEndLoopSeconds;
+        private System.Windows.Forms.NumericUpDown upDownEndLoopMinutes;
+        private System.Windows.Forms.Label labelLoopEnd;
+        private System.Windows.Forms.Button buttonStartLoopNow;
+        private System.Windows.Forms.NumericUpDown upDownStartLoopMilliseconds;
+        private System.Windows.Forms.NumericUpDown upDownStartLoopSeconds;
+        private System.Windows.Forms.NumericUpDown upDownStartLoopMinutes;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panelPresets;
+        private System.Windows.Forms.Label labelPreset2;
+        private System.Windows.Forms.Label labelPreset6;
+        private System.Windows.Forms.Button buttonPreset6;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label labelPreset1;
+        private System.Windows.Forms.Label labelPreset5;
+        private System.Windows.Forms.Button buttonPreset5;
+        private System.Windows.Forms.Button buttonPreset1;
+        private System.Windows.Forms.Label labelPreset4;
+        private System.Windows.Forms.Label labelPreset8;
+        private System.Windows.Forms.Button buttonPreset8;
+        private System.Windows.Forms.Button buttonPreset4;
+        private System.Windows.Forms.Label labelPreset3;
+        private System.Windows.Forms.Label labelPreset7;
+        private System.Windows.Forms.Button buttonPreset7;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button buttonReset;
+        private System.Windows.Forms.Button buttonSavePreset;
+        private System.Windows.Forms.NumericUpDown upDownCurrentMilliseconds;
+        private System.Windows.Forms.NumericUpDown upDownCurrentSeconds;
+        private System.Windows.Forms.NumericUpDown upDownCurrentMinutes;
+        private System.Windows.Forms.Label labelEQMidValue;
+        private System.Windows.Forms.Label labelEQLowValue;
     }
 }

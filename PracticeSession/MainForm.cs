@@ -232,6 +232,7 @@ namespace PracticeSession
             trackBarEQLow.Enabled = enable;
             trackBarEQMid.Enabled = enable;
             trackBarEQHi.Enabled = enable;
+            upDownCue.Enabled = enable;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -303,7 +304,6 @@ namespace PracticeSession
                     buttonPlay.Image = Resources.Play;
                     PlayTimeUpdateTimer.Enabled = false;
 
-                    _ignorePlayTimeUIEvents = true;
                     // Force a last refresh of play time controls
                     UpdateCurrentPlaytime(_audioPlaybackService.CurrentPlayTime, _audioPlaybackService.FilePlayDuration);
                     int currentPlayTimeValue = 0;
@@ -522,6 +522,23 @@ namespace PracticeSession
         {
             labelPositionValue.Text =
                 $"{playTime.Minutes:00}:{playTime.Seconds:00} / {filePlayDuration.Minutes:00}:{filePlayDuration.Seconds:00}";
+
+            upDownCurrentMinutes.ValueChanged -= upDownCurrent_ValueChanged;
+            upDownCurrentSeconds.ValueChanged -= upDownCurrent_ValueChanged;
+            upDownCurrentMilliseconds.ValueChanged -= upDownCurrent_ValueChanged;
+            try
+            {
+                // Update current play time controls
+                upDownCurrentMinutes.Value = playTime.Minutes;
+                upDownCurrentSeconds.Value = playTime.Seconds;
+                upDownCurrentMilliseconds.Value = playTime.Milliseconds;
+            }
+            finally
+            {
+                upDownCurrentMinutes.ValueChanged += upDownCurrent_ValueChanged;
+                upDownCurrentSeconds.ValueChanged += upDownCurrent_ValueChanged;
+                upDownCurrentMilliseconds.ValueChanged += upDownCurrent_ValueChanged;
+            }
         }
 
         private void PlayTimeUpdateTimer_Tick(object sender, EventArgs e)
@@ -660,6 +677,286 @@ namespace PracticeSession
         private void buttonPlay_Click(object sender, EventArgs e)
         {
             PlayButtonPressed();
+        }
+
+        private void upDownCue_ValueChanged(object sender, EventArgs e)
+        {
+            if (_audioPlaybackService != null)
+            {
+                _audioPlaybackService.Cue = new TimeSpan(0, 0, Convert.ToInt32(upDownCue.Value));
+            }
+        }
+
+        private void checkBoxLoop_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_audioPlaybackService != null)
+            {
+                _audioPlaybackService.Loop = checkBoxLoop.Checked;
+            }
+        }
+
+        private void buttonStartLoopNow_Click(object sender, EventArgs e)
+        {
+            if (_audioPlaybackService == null)
+            {
+                return;
+            }
+
+            if (_audioPlaybackService.CurrentPlayTime > _audioPlaybackService.EndMarker)
+            {
+                upDownEndLoopMinutes.Value = upDownCurrentMinutes.Value;
+                upDownEndLoopSeconds.Value = upDownCurrentSeconds.Value;
+                upDownEndLoopMilliseconds.Value = upDownCurrentMilliseconds.Value;
+            }
+
+            upDownStartLoopMinutes.Value = upDownCurrentMinutes.Value;
+            upDownStartLoopSeconds.Value = upDownCurrentSeconds.Value;
+            upDownStartLoopMilliseconds.Value = upDownCurrentMilliseconds.Value;
+        }
+
+        private void buttonEndLoopNow_Click(object sender, EventArgs e)
+        {
+            upDownEndLoopMinutes.Value = upDownCurrentMinutes.Value;
+            upDownEndLoopSeconds.Value = upDownCurrentSeconds.Value;
+            upDownEndLoopMilliseconds.Value = upDownCurrentMilliseconds.Value;
+        }
+
+        private void upDownStartLoopMinutes_ValueChanged(object sender, EventArgs e)
+        {
+            if (_audioPlaybackService == null)
+                return;
+
+            TimeSpan startMarker = _audioPlaybackService.StartMarker;
+
+            if (upDownStartLoopMinutes.Value < 0)
+            {
+                startMarker = startMarker.Subtract(new TimeSpan(0, 0, 1, 0, 0));
+            }
+            else if (upDownStartLoopMinutes.Value > 99)
+            {
+                startMarker = startMarker.Add(new TimeSpan(0, 0, 1, 0, 0));
+            }
+            else
+            {
+                startMarker = new TimeSpan(0, 0, Convert.ToInt32(upDownStartLoopMinutes.Value), startMarker.Seconds, startMarker.Milliseconds);
+            }
+
+            UpdateStartMarker(startMarker);
+        }
+
+        private void upDownStartLoopSeconds_ValueChanged(object sender, EventArgs e)
+        {
+            if (_audioPlaybackService == null)
+                return;
+
+            TimeSpan startMarker = _audioPlaybackService.StartMarker;
+
+            if (upDownStartLoopSeconds.Value < 0)
+            {
+                startMarker = startMarker.Subtract(new TimeSpan(0, 0, 1));
+            }
+            else if (upDownStartLoopSeconds.Value > 59)
+            {
+                startMarker = startMarker.Add(new TimeSpan(0, 0, 1));
+            }
+            else
+            {
+                startMarker = new TimeSpan(0, 0, startMarker.Minutes, Convert.ToInt32(upDownStartLoopSeconds.Value), startMarker.Milliseconds);
+            }
+
+            UpdateStartMarker(startMarker);
+        }
+
+        private void upDownStartLoopMilliseconds_ValueChanged(object sender, EventArgs e)
+        {
+            if (_audioPlaybackService == null)
+                return;
+
+            TimeSpan startMarker = _audioPlaybackService.StartMarker;
+
+            if (upDownStartLoopMilliseconds.Value < 0)
+            {
+                startMarker = startMarker.Subtract(new TimeSpan(0, 0, 0, 0, 1));
+            }
+            else if (upDownStartLoopMilliseconds.Value > 999)
+            {
+                startMarker = startMarker.Add(new TimeSpan(0, 0, 0, 0, 1));
+            }
+            else
+            {
+                startMarker = new TimeSpan(0, 0, startMarker.Minutes, startMarker.Seconds, Convert.ToInt32(upDownStartLoopMilliseconds.Value));
+            }
+
+            UpdateStartMarker(startMarker);
+        }
+
+        private void upDownEndLoopMinutes_ValueChanged(object sender, EventArgs e)
+        {
+            if (_audioPlaybackService == null)
+                return;
+
+            TimeSpan endMarker = _audioPlaybackService.EndMarker;
+
+            if (upDownEndLoopMinutes.Value < 0)
+            {
+                endMarker = endMarker.Subtract(new TimeSpan(0, 0, 1, 0, 0));
+            }
+            else if (upDownEndLoopMinutes.Value > 99)
+            {
+                endMarker = endMarker.Add(new TimeSpan(0, 0, 1, 0, 0));
+            }
+            else
+            {
+                endMarker = new TimeSpan(0, 0, Convert.ToInt32(upDownEndLoopMinutes.Value), endMarker.Seconds, endMarker.Milliseconds);
+            }
+
+            UpdateEndMarker(endMarker);
+        }
+
+        private void upDownEndLoopSeconds_ValueChanged(object sender, EventArgs e)
+        {
+            if (_audioPlaybackService == null)
+                return;
+
+            TimeSpan endMarker = _audioPlaybackService.EndMarker;
+
+            if (upDownEndLoopSeconds.Value < 0)
+            {
+                endMarker = endMarker.Subtract(new TimeSpan(0, 0, 1));
+            }
+            else if (upDownEndLoopSeconds.Value > 59)
+            {
+                endMarker = endMarker.Add(new TimeSpan(0, 0, 1));
+            }
+            else
+            {
+                endMarker = new TimeSpan(0, 0, endMarker.Minutes, Convert.ToInt32(upDownEndLoopSeconds.Value), endMarker.Milliseconds);
+            }
+
+            UpdateEndMarker(endMarker);
+        }
+
+        private void upDownEndLoopMilliseconds_ValueChanged(object sender, EventArgs e)
+        {
+            if (_audioPlaybackService == null)
+                return;
+
+            TimeSpan endMarker = _audioPlaybackService.EndMarker;
+
+            if (upDownEndLoopMilliseconds.Value < 0)
+            {
+                endMarker = endMarker.Subtract(new TimeSpan(0, 0, 0, 0, 1));
+            }
+            else if (upDownEndLoopMilliseconds.Value > 999)
+            {
+                endMarker = endMarker.Add(new TimeSpan(0, 0, 0, 0, 1));
+            }
+            else
+            {
+                endMarker = new TimeSpan(0, 0, endMarker.Minutes, endMarker.Seconds, Convert.ToInt32(upDownEndLoopMilliseconds.Value));
+            }
+
+            UpdateEndMarker(endMarker);
+        }
+
+        private void UpdateStartMarker(TimeSpan startMarker)
+        {
+            if (startMarker > _audioPlaybackService.EndMarker)
+            {
+                startMarker = _audioPlaybackService.EndMarker;
+            }
+            else if (startMarker < TimeSpan.Zero)
+            {
+                startMarker = TimeSpan.Zero;
+            }
+
+            _audioPlaybackService.StartMarker = startMarker;
+
+            ApplyLoopStartMarkerUI(startMarker);
+        }
+
+        private void UpdateEndMarker(TimeSpan endMarker)
+        {
+            if (endMarker < _audioPlaybackService.StartMarker)
+            {
+                endMarker = _audioPlaybackService.StartMarker;
+            }
+            else if (endMarker > _audioPlaybackService.FilePlayDuration)
+            {
+                endMarker = _audioPlaybackService.FilePlayDuration;
+            }
+
+            _audioPlaybackService.EndMarker = endMarker;
+
+            ApplyLoopEndMarkerUI(endMarker);
+        }
+
+        private void ApplyLoopStartMarkerUI(TimeSpan startMarker)
+        {
+            upDownStartLoopMinutes.ValueChanged -= upDownStartLoopMinutes_ValueChanged;
+            upDownStartLoopSeconds.ValueChanged -= upDownStartLoopSeconds_ValueChanged;
+            upDownStartLoopMilliseconds.ValueChanged -= upDownStartLoopMilliseconds_ValueChanged;
+            try
+            {
+                upDownStartLoopMinutes.Value = startMarker.Minutes;
+                upDownStartLoopSeconds.Value = startMarker.Seconds;
+                upDownStartLoopMilliseconds.Value = startMarker.Milliseconds;
+            }
+            finally
+            {
+                upDownStartLoopMinutes.ValueChanged += upDownStartLoopMinutes_ValueChanged;
+                upDownStartLoopSeconds.ValueChanged += upDownStartLoopSeconds_ValueChanged;
+                upDownStartLoopMilliseconds.ValueChanged += upDownStartLoopMilliseconds_ValueChanged;
+            }
+        }
+
+        private void ApplyLoopEndMarkerUI(TimeSpan endMarker)
+        {
+            upDownEndLoopMinutes.ValueChanged -= upDownEndLoopMinutes_ValueChanged;
+            upDownEndLoopSeconds.ValueChanged -= upDownEndLoopSeconds_ValueChanged;
+            upDownEndLoopMilliseconds.ValueChanged -= upDownEndLoopMilliseconds_ValueChanged;
+            try
+            {
+                upDownEndLoopMinutes.Value = endMarker.Minutes;
+                upDownEndLoopSeconds.Value = endMarker.Seconds;
+                upDownEndLoopMilliseconds.Value = endMarker.Milliseconds;
+            }
+            finally
+            {
+                upDownEndLoopMinutes.ValueChanged += upDownEndLoopMinutes_ValueChanged;
+                upDownEndLoopSeconds.ValueChanged += upDownEndLoopSeconds_ValueChanged;
+                upDownEndLoopMilliseconds.ValueChanged += upDownEndLoopMilliseconds_ValueChanged;
+            }
+        }
+
+        private void upDownCurrent_ValueChanged(object sender, EventArgs e)
+        {
+            if (_ignorePlayTimeUIEvents)
+                return;
+
+            TimeSpan currentPlayTime = new TimeSpan(0, 0, Convert.ToInt32(upDownCurrentMinutes.Value), Convert.ToInt32(upDownCurrentSeconds.Value), Convert.ToInt32(upDownCurrentMilliseconds.Value));
+            // Mask out events to eliminate 'Racing' between GUI and  over current playtime
+            TempMaskOutCurrentControls();
+
+            UpdateCoreCurrentPlayTime(ref currentPlayTime);
+
+            if (_audioPlaybackService.PlaybackStatus != PlaybackStatus.Playing)
+            {
+                trackBarPlayTime.Value = Convert.ToInt32(100.0f * currentPlayTime.TotalSeconds / _audioPlaybackService.FilePlayDuration.TotalSeconds);
+            }
+        }
+
+        private void UpdateCoreCurrentPlayTime(ref TimeSpan currentPlayTime)
+        {
+            // Clip to actual file duration limits (0..FilePlayDuration)
+            if (currentPlayTime > _audioPlaybackService.FilePlayDuration)
+                currentPlayTime = _audioPlaybackService.FilePlayDuration;
+            else if (currentPlayTime < TimeSpan.Zero)
+                currentPlayTime = TimeSpan.Zero;
+
+            _audioPlaybackService.CurrentPlayTime = currentPlayTime;
+
+            UpdateCurrentPlaytime(currentPlayTime, _audioPlaybackService.FilePlayDuration);
         }
     }
 }
