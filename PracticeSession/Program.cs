@@ -34,6 +34,7 @@ namespace PracticeSession
 
             services.AddSingleton<MainForm>();
             services.AddScoped<IAudioPlaybackService, AudioPlaybackService>();
+            services.AddScoped<IAudioRenderService, AudioRenderService>();
         }
     }
 }

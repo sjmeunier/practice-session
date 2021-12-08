@@ -94,5 +94,17 @@ namespace PracticeSession.Properties {
                 this["SoundOutput"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PresetData {
+            get {
+                return ((string)(this["PresetData"]));
+            }
+            set {
+                this["PresetData"] = value;
+            }
+        }
     }
 }

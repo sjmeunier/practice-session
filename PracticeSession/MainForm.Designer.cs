@@ -49,13 +49,11 @@ namespace PracticeSession
             this.labelFilename = new System.Windows.Forms.Label();
             this.labelCurrentlyPlaying = new System.Windows.Forms.Label();
             this.trackBarPlayTime = new System.Windows.Forms.TrackBar();
-            this.labelPosition = new System.Windows.Forms.Label();
             this.labelPlayDuration0Q = new System.Windows.Forms.Label();
             this.labelPlayDuration1Q = new System.Windows.Forms.Label();
             this.labelPlayDuration2Q = new System.Windows.Forms.Label();
             this.labelPlayDuration3Q = new System.Windows.Forms.Label();
             this.labelPlayDuration = new System.Windows.Forms.Label();
-            this.labelPositionValue = new System.Windows.Forms.Label();
             this.PlayTimeUpdateTimer = new System.Windows.Forms.Timer(this.components);
             this.buttonOpenFile = new System.Windows.Forms.Button();
             this.buttonPlay = new System.Windows.Forms.Button();
@@ -111,6 +109,8 @@ namespace PracticeSession
             this.label1 = new System.Windows.Forms.Label();
             this.trackBarTempo = new System.Windows.Forms.TrackBar();
             this.panelLoop = new System.Windows.Forms.Panel();
+            this.labelPositionValue = new System.Windows.Forms.Label();
+            this.labelPosition = new System.Windows.Forms.Label();
             this.upDownCurrentMilliseconds = new System.Windows.Forms.NumericUpDown();
             this.upDownCurrentSeconds = new System.Windows.Forms.NumericUpDown();
             this.upDownCurrentMinutes = new System.Windows.Forms.NumericUpDown();
@@ -135,15 +135,16 @@ namespace PracticeSession
             this.labelPreset3 = new System.Windows.Forms.Label();
             this.labelPreset7 = new System.Windows.Forms.Label();
             this.buttonPreset7 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.buttonPreset3 = new System.Windows.Forms.Button();
             this.labelPreset2 = new System.Windows.Forms.Label();
             this.labelPreset6 = new System.Windows.Forms.Label();
             this.buttonPreset6 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonPreset2 = new System.Windows.Forms.Button();
             this.labelPreset1 = new System.Windows.Forms.Label();
             this.labelPreset5 = new System.Windows.Forms.Label();
             this.buttonPreset5 = new System.Windows.Forms.Button();
             this.buttonPreset1 = new System.Windows.Forms.Button();
+            this.pictureBoxRenderer = new System.Windows.Forms.PictureBox();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarPlayTime)).BeginInit();
             this.panelControls.SuspendLayout();
@@ -166,6 +167,7 @@ namespace PracticeSession
             ((System.ComponentModel.ISupportInitialize)(this.upDownStartLoopSeconds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDownStartLoopMinutes)).BeginInit();
             this.panelPresets.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRenderer)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -175,7 +177,7 @@ namespace PracticeSession
             this.menuItemFile});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1214, 40);
+            this.menuStrip.Size = new System.Drawing.Size(1668, 40);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip";
             this.menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip_ItemClicked);
@@ -260,7 +262,6 @@ namespace PracticeSession
             // 
             // openFileDialog
             // 
-            this.openFileDialog.FileName = "openFileDialog";
             this.openFileDialog.Filter = "All Music Files|*.mp3;*.wav;*.ogg;*.flac;*.wma;*.aiff;*.m4a|MP3 files|*.mp3|WAV f" +
     "iles|*.wav|Ogg Vorbis files|*.ogg|FLAC files|*.flac|WMA files|*.wma|AIFF files|*" +
     ".aiff|M4A files|*.m4a";
@@ -268,51 +269,43 @@ namespace PracticeSession
             // labelFilename
             // 
             this.labelFilename.AutoSize = true;
-            this.labelFilename.Location = new System.Drawing.Point(306, 70);
+            this.labelFilename.Location = new System.Drawing.Point(364, 70);
             this.labelFilename.Name = "labelFilename";
             this.labelFilename.Size = new System.Drawing.Size(198, 32);
             this.labelFilename.TabIndex = 2;
             this.labelFilename.Text = "<No file loaded>";
+            this.labelFilename.Click += new System.EventHandler(this.labelFilename_Click);
             // 
             // labelCurrentlyPlaying
             // 
             this.labelCurrentlyPlaying.AutoSize = true;
             this.labelCurrentlyPlaying.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelCurrentlyPlaying.Location = new System.Drawing.Point(80, 70);
+            this.labelCurrentlyPlaying.Location = new System.Drawing.Point(138, 70);
             this.labelCurrentlyPlaying.Name = "labelCurrentlyPlaying";
             this.labelCurrentlyPlaying.Size = new System.Drawing.Size(220, 32);
             this.labelCurrentlyPlaying.TabIndex = 3;
             this.labelCurrentlyPlaying.Text = "Currently playing:";
+            this.labelCurrentlyPlaying.Click += new System.EventHandler(this.labelCurrentlyPlaying_Click);
             // 
             // trackBarPlayTime
             // 
             this.trackBarPlayTime.Cursor = System.Windows.Forms.Cursors.NoMoveHoriz;
             this.trackBarPlayTime.LargeChange = 0;
-            this.trackBarPlayTime.Location = new System.Drawing.Point(12, 240);
+            this.trackBarPlayTime.Location = new System.Drawing.Point(-6, 442);
             this.trackBarPlayTime.Maximum = 100;
             this.trackBarPlayTime.Name = "trackBarPlayTime";
-            this.trackBarPlayTime.Size = new System.Drawing.Size(1168, 90);
+            this.trackBarPlayTime.Size = new System.Drawing.Size(1682, 90);
             this.trackBarPlayTime.SmallChange = 5;
             this.trackBarPlayTime.TabIndex = 35;
             this.trackBarPlayTime.TickFrequency = 5;
             this.trackBarPlayTime.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
             this.trackBarPlayTime.ValueChanged += new System.EventHandler(this.trackBarPlayTime_ValueChanged);
             // 
-            // labelPosition
-            // 
-            this.labelPosition.AutoSize = true;
-            this.labelPosition.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelPosition.Location = new System.Drawing.Point(80, 145);
-            this.labelPosition.Name = "labelPosition";
-            this.labelPosition.Size = new System.Drawing.Size(114, 32);
-            this.labelPosition.TabIndex = 36;
-            this.labelPosition.Text = "Position:";
-            // 
             // labelPlayDuration0Q
             // 
             this.labelPlayDuration0Q.AutoSize = true;
             this.labelPlayDuration0Q.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelPlayDuration0Q.Location = new System.Drawing.Point(12, 212);
+            this.labelPlayDuration0Q.Location = new System.Drawing.Point(7, 497);
             this.labelPlayDuration0Q.Name = "labelPlayDuration0Q";
             this.labelPlayDuration0Q.Size = new System.Drawing.Size(56, 25);
             this.labelPlayDuration0Q.TabIndex = 48;
@@ -323,7 +316,7 @@ namespace PracticeSession
             // 
             this.labelPlayDuration1Q.AutoSize = true;
             this.labelPlayDuration1Q.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelPlayDuration1Q.Location = new System.Drawing.Point(294, 212);
+            this.labelPlayDuration1Q.Location = new System.Drawing.Point(403, 497);
             this.labelPlayDuration1Q.Name = "labelPlayDuration1Q";
             this.labelPlayDuration1Q.Size = new System.Drawing.Size(56, 25);
             this.labelPlayDuration1Q.TabIndex = 49;
@@ -334,7 +327,7 @@ namespace PracticeSession
             // 
             this.labelPlayDuration2Q.AutoSize = true;
             this.labelPlayDuration2Q.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelPlayDuration2Q.Location = new System.Drawing.Point(575, 212);
+            this.labelPlayDuration2Q.Location = new System.Drawing.Point(807, 497);
             this.labelPlayDuration2Q.Name = "labelPlayDuration2Q";
             this.labelPlayDuration2Q.Size = new System.Drawing.Size(56, 25);
             this.labelPlayDuration2Q.TabIndex = 50;
@@ -345,7 +338,7 @@ namespace PracticeSession
             // 
             this.labelPlayDuration3Q.AutoSize = true;
             this.labelPlayDuration3Q.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelPlayDuration3Q.Location = new System.Drawing.Point(853, 212);
+            this.labelPlayDuration3Q.Location = new System.Drawing.Point(1208, 497);
             this.labelPlayDuration3Q.Name = "labelPlayDuration3Q";
             this.labelPlayDuration3Q.Size = new System.Drawing.Size(56, 25);
             this.labelPlayDuration3Q.TabIndex = 51;
@@ -356,22 +349,12 @@ namespace PracticeSession
             // 
             this.labelPlayDuration.AutoSize = true;
             this.labelPlayDuration.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelPlayDuration.Location = new System.Drawing.Point(1134, 212);
+            this.labelPlayDuration.Location = new System.Drawing.Point(1612, 497);
             this.labelPlayDuration.Name = "labelPlayDuration";
             this.labelPlayDuration.Size = new System.Drawing.Size(56, 25);
             this.labelPlayDuration.TabIndex = 52;
             this.labelPlayDuration.Text = "00:00";
             this.labelPlayDuration.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelPositionValue
-            // 
-            this.labelPositionValue.AutoSize = true;
-            this.labelPositionValue.Location = new System.Drawing.Point(220, 145);
-            this.labelPositionValue.Name = "labelPositionValue";
-            this.labelPositionValue.Size = new System.Drawing.Size(125, 32);
-            this.labelPositionValue.TabIndex = 53;
-            this.labelPositionValue.Text = "0:00 / 0:00";
-            this.labelPositionValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // PlayTimeUpdateTimer
             // 
@@ -382,9 +365,9 @@ namespace PracticeSession
             // 
             this.buttonOpenFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonOpenFile.Image = ((System.Drawing.Image)(resources.GetObject("buttonOpenFile.Image")));
-            this.buttonOpenFile.Location = new System.Drawing.Point(11, 58);
+            this.buttonOpenFile.Location = new System.Drawing.Point(15, 62);
             this.buttonOpenFile.Name = "buttonOpenFile";
-            this.buttonOpenFile.Size = new System.Drawing.Size(57, 57);
+            this.buttonOpenFile.Size = new System.Drawing.Size(48, 48);
             this.buttonOpenFile.TabIndex = 56;
             this.buttonOpenFile.UseVisualStyleBackColor = true;
             this.buttonOpenFile.Click += new System.EventHandler(this.buttonOpenFile_Click);
@@ -393,9 +376,9 @@ namespace PracticeSession
             // 
             this.buttonPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPlay.Image = ((System.Drawing.Image)(resources.GetObject("buttonPlay.Image")));
-            this.buttonPlay.Location = new System.Drawing.Point(10, 133);
+            this.buttonPlay.Location = new System.Drawing.Point(74, 62);
             this.buttonPlay.Name = "buttonPlay";
-            this.buttonPlay.Size = new System.Drawing.Size(57, 57);
+            this.buttonPlay.Size = new System.Drawing.Size(48, 48);
             this.buttonPlay.TabIndex = 57;
             this.buttonPlay.UseVisualStyleBackColor = true;
             this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
@@ -403,14 +386,15 @@ namespace PracticeSession
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.statusStrip1.Location = new System.Drawing.Point(0, 1325);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 1344);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1214, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1668, 22);
             this.statusStrip1.TabIndex = 58;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // panelControls
             // 
+            this.panelControls.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelControls.Controls.Add(this.labelEQMidValue);
             this.panelControls.Controls.Add(this.labelEQLowValue);
             this.panelControls.Controls.Add(this.labelCueSeconds);
@@ -456,9 +440,9 @@ namespace PracticeSession
             this.panelControls.Controls.Add(this.labelX20);
             this.panelControls.Controls.Add(this.label1);
             this.panelControls.Controls.Add(this.trackBarTempo);
-            this.panelControls.Location = new System.Drawing.Point(11, 546);
+            this.panelControls.Location = new System.Drawing.Point(15, 550);
             this.panelControls.Name = "panelControls";
-            this.panelControls.Size = new System.Drawing.Size(1178, 776);
+            this.panelControls.Size = new System.Drawing.Size(1197, 776);
             this.panelControls.TabIndex = 62;
             // 
             // labelEQMidValue
@@ -617,7 +601,7 @@ namespace PracticeSession
             this.buttonChannelRight,
             this.buttonChannelDualMono});
             this.toolStripChannels.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.toolStripChannels.Location = new System.Drawing.Point(956, 95);
+            this.toolStripChannels.Location = new System.Drawing.Point(964, 94);
             this.toolStripChannels.Name = "toolStripChannels";
             this.toolStripChannels.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.toolStripChannels.Size = new System.Drawing.Size(96, 170);
@@ -1011,6 +995,9 @@ namespace PracticeSession
             // 
             // panelLoop
             // 
+            this.panelLoop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelLoop.Controls.Add(this.labelPositionValue);
+            this.panelLoop.Controls.Add(this.labelPosition);
             this.panelLoop.Controls.Add(this.upDownCurrentMilliseconds);
             this.panelLoop.Controls.Add(this.upDownCurrentSeconds);
             this.panelLoop.Controls.Add(this.upDownCurrentMinutes);
@@ -1025,14 +1012,34 @@ namespace PracticeSession
             this.panelLoop.Controls.Add(this.upDownStartLoopMinutes);
             this.panelLoop.Controls.Add(this.label2);
             this.panelLoop.Controls.Add(this.checkBoxLoop);
-            this.panelLoop.Location = new System.Drawing.Point(12, 327);
+            this.panelLoop.Location = new System.Drawing.Point(1218, 550);
             this.panelLoop.Name = "panelLoop";
-            this.panelLoop.Size = new System.Drawing.Size(465, 213);
+            this.panelLoop.Size = new System.Drawing.Size(435, 292);
             this.panelLoop.TabIndex = 63;
+            // 
+            // labelPositionValue
+            // 
+            this.labelPositionValue.AutoSize = true;
+            this.labelPositionValue.Location = new System.Drawing.Point(81, 16);
+            this.labelPositionValue.Name = "labelPositionValue";
+            this.labelPositionValue.Size = new System.Drawing.Size(125, 32);
+            this.labelPositionValue.TabIndex = 119;
+            this.labelPositionValue.Text = "0:00 / 0:00";
+            this.labelPositionValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelPosition
+            // 
+            this.labelPosition.AutoSize = true;
+            this.labelPosition.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelPosition.Location = new System.Drawing.Point(10, 16);
+            this.labelPosition.Name = "labelPosition";
+            this.labelPosition.Size = new System.Drawing.Size(61, 32);
+            this.labelPosition.TabIndex = 118;
+            this.labelPosition.Text = "Pos:";
             // 
             // upDownCurrentMilliseconds
             // 
-            this.upDownCurrentMilliseconds.Location = new System.Drawing.Point(344, 15);
+            this.upDownCurrentMilliseconds.Location = new System.Drawing.Point(259, 60);
             this.upDownCurrentMilliseconds.Maximum = new decimal(new int[] {
             999,
             0,
@@ -1045,7 +1052,7 @@ namespace PracticeSession
             // 
             // upDownCurrentSeconds
             // 
-            this.upDownCurrentSeconds.Location = new System.Drawing.Point(255, 15);
+            this.upDownCurrentSeconds.Location = new System.Drawing.Point(170, 60);
             this.upDownCurrentSeconds.Maximum = new decimal(new int[] {
             60,
             0,
@@ -1058,7 +1065,7 @@ namespace PracticeSession
             // 
             // upDownCurrentMinutes
             // 
-            this.upDownCurrentMinutes.Location = new System.Drawing.Point(166, 15);
+            this.upDownCurrentMinutes.Location = new System.Drawing.Point(81, 60);
             this.upDownCurrentMinutes.Maximum = new decimal(new int[] {
             999,
             0,
@@ -1071,7 +1078,7 @@ namespace PracticeSession
             // 
             // buttonEndLoopNow
             // 
-            this.buttonEndLoopNow.Location = new System.Drawing.Point(367, 124);
+            this.buttonEndLoopNow.Location = new System.Drawing.Point(348, 234);
             this.buttonEndLoopNow.Name = "buttonEndLoopNow";
             this.buttonEndLoopNow.Size = new System.Drawing.Size(71, 41);
             this.buttonEndLoopNow.TabIndex = 114;
@@ -1081,7 +1088,7 @@ namespace PracticeSession
             // 
             // upDownEndLoopMilliseconds
             // 
-            this.upDownEndLoopMilliseconds.Location = new System.Drawing.Point(259, 124);
+            this.upDownEndLoopMilliseconds.Location = new System.Drawing.Point(259, 234);
             this.upDownEndLoopMilliseconds.Maximum = new decimal(new int[] {
             999,
             0,
@@ -1094,7 +1101,7 @@ namespace PracticeSession
             // 
             // upDownEndLoopSeconds
             // 
-            this.upDownEndLoopSeconds.Location = new System.Drawing.Point(170, 124);
+            this.upDownEndLoopSeconds.Location = new System.Drawing.Point(170, 234);
             this.upDownEndLoopSeconds.Maximum = new decimal(new int[] {
             60,
             0,
@@ -1107,7 +1114,7 @@ namespace PracticeSession
             // 
             // upDownEndLoopMinutes
             // 
-            this.upDownEndLoopMinutes.Location = new System.Drawing.Point(81, 124);
+            this.upDownEndLoopMinutes.Location = new System.Drawing.Point(81, 234);
             this.upDownEndLoopMinutes.Maximum = new decimal(new int[] {
             999,
             0,
@@ -1122,7 +1129,7 @@ namespace PracticeSession
             // 
             this.labelLoopEnd.AutoSize = true;
             this.labelLoopEnd.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelLoopEnd.Location = new System.Drawing.Point(8, 126);
+            this.labelLoopEnd.Location = new System.Drawing.Point(8, 236);
             this.labelLoopEnd.Name = "labelLoopEnd";
             this.labelLoopEnd.Size = new System.Drawing.Size(59, 32);
             this.labelLoopEnd.TabIndex = 110;
@@ -1130,7 +1137,7 @@ namespace PracticeSession
             // 
             // buttonStartLoopNow
             // 
-            this.buttonStartLoopNow.Location = new System.Drawing.Point(367, 77);
+            this.buttonStartLoopNow.Location = new System.Drawing.Point(348, 187);
             this.buttonStartLoopNow.Name = "buttonStartLoopNow";
             this.buttonStartLoopNow.Size = new System.Drawing.Size(71, 41);
             this.buttonStartLoopNow.TabIndex = 109;
@@ -1140,7 +1147,7 @@ namespace PracticeSession
             // 
             // upDownStartLoopMilliseconds
             // 
-            this.upDownStartLoopMilliseconds.Location = new System.Drawing.Point(259, 77);
+            this.upDownStartLoopMilliseconds.Location = new System.Drawing.Point(259, 187);
             this.upDownStartLoopMilliseconds.Maximum = new decimal(new int[] {
             999,
             0,
@@ -1153,7 +1160,7 @@ namespace PracticeSession
             // 
             // upDownStartLoopSeconds
             // 
-            this.upDownStartLoopSeconds.Location = new System.Drawing.Point(170, 77);
+            this.upDownStartLoopSeconds.Location = new System.Drawing.Point(170, 187);
             this.upDownStartLoopSeconds.Maximum = new decimal(new int[] {
             60,
             0,
@@ -1166,7 +1173,7 @@ namespace PracticeSession
             // 
             // upDownStartLoopMinutes
             // 
-            this.upDownStartLoopMinutes.Location = new System.Drawing.Point(81, 77);
+            this.upDownStartLoopMinutes.Location = new System.Drawing.Point(81, 187);
             this.upDownStartLoopMinutes.Maximum = new decimal(new int[] {
             999,
             0,
@@ -1181,7 +1188,7 @@ namespace PracticeSession
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(8, 79);
+            this.label2.Location = new System.Drawing.Point(8, 189);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 32);
             this.label2.TabIndex = 105;
@@ -1190,7 +1197,7 @@ namespace PracticeSession
             // checkBoxLoop
             // 
             this.checkBoxLoop.AutoSize = true;
-            this.checkBoxLoop.Location = new System.Drawing.Point(11, 11);
+            this.checkBoxLoop.Location = new System.Drawing.Point(81, 140);
             this.checkBoxLoop.Name = "checkBoxLoop";
             this.checkBoxLoop.Size = new System.Drawing.Size(99, 36);
             this.checkBoxLoop.TabIndex = 0;
@@ -1200,6 +1207,7 @@ namespace PracticeSession
             // 
             // panelPresets
             // 
+            this.panelPresets.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelPresets.Controls.Add(this.buttonReset);
             this.panelPresets.Controls.Add(this.buttonSavePreset);
             this.panelPresets.Controls.Add(this.labelPreset4);
@@ -1209,44 +1217,47 @@ namespace PracticeSession
             this.panelPresets.Controls.Add(this.labelPreset3);
             this.panelPresets.Controls.Add(this.labelPreset7);
             this.panelPresets.Controls.Add(this.buttonPreset7);
-            this.panelPresets.Controls.Add(this.button4);
+            this.panelPresets.Controls.Add(this.buttonPreset3);
             this.panelPresets.Controls.Add(this.labelPreset2);
             this.panelPresets.Controls.Add(this.labelPreset6);
             this.panelPresets.Controls.Add(this.buttonPreset6);
-            this.panelPresets.Controls.Add(this.button2);
+            this.panelPresets.Controls.Add(this.buttonPreset2);
             this.panelPresets.Controls.Add(this.labelPreset1);
             this.panelPresets.Controls.Add(this.labelPreset5);
             this.panelPresets.Controls.Add(this.buttonPreset5);
             this.panelPresets.Controls.Add(this.buttonPreset1);
-            this.panelPresets.Location = new System.Drawing.Point(485, 327);
+            this.panelPresets.Location = new System.Drawing.Point(1218, 848);
             this.panelPresets.Name = "panelPresets";
-            this.panelPresets.Size = new System.Drawing.Size(705, 213);
+            this.panelPresets.Size = new System.Drawing.Size(435, 478);
             this.panelPresets.TabIndex = 64;
             // 
             // buttonReset
             // 
             this.buttonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonReset.Image = ((System.Drawing.Image)(resources.GetObject("buttonReset.Image")));
-            this.buttonReset.Location = new System.Drawing.Point(10, 59);
+            this.buttonReset.Location = new System.Drawing.Point(64, 11);
             this.buttonReset.Name = "buttonReset";
-            this.buttonReset.Size = new System.Drawing.Size(42, 41);
+            this.buttonReset.Size = new System.Drawing.Size(48, 48);
             this.buttonReset.TabIndex = 126;
             this.buttonReset.UseVisualStyleBackColor = true;
+            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
             // buttonSavePreset
             // 
+            this.buttonSavePreset.BackColor = System.Drawing.SystemColors.Control;
             this.buttonSavePreset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSavePreset.Image = ((System.Drawing.Image)(resources.GetObject("buttonSavePreset.Image")));
             this.buttonSavePreset.Location = new System.Drawing.Point(10, 11);
             this.buttonSavePreset.Name = "buttonSavePreset";
-            this.buttonSavePreset.Size = new System.Drawing.Size(42, 41);
+            this.buttonSavePreset.Size = new System.Drawing.Size(48, 48);
             this.buttonSavePreset.TabIndex = 65;
-            this.buttonSavePreset.UseVisualStyleBackColor = true;
+            this.buttonSavePreset.UseVisualStyleBackColor = false;
+            this.buttonSavePreset.Click += new System.EventHandler(this.buttonSavePreset_Click);
             // 
             // labelPreset4
             // 
             this.labelPreset4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelPreset4.Location = new System.Drawing.Point(55, 157);
+            this.labelPreset4.Location = new System.Drawing.Point(10, 233);
             this.labelPreset4.Margin = new System.Windows.Forms.Padding(0);
             this.labelPreset4.Name = "labelPreset4";
             this.labelPreset4.Size = new System.Drawing.Size(35, 32);
@@ -1257,7 +1268,7 @@ namespace PracticeSession
             // labelPreset8
             // 
             this.labelPreset8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelPreset8.Location = new System.Drawing.Point(373, 157);
+            this.labelPreset8.Location = new System.Drawing.Point(10, 426);
             this.labelPreset8.Margin = new System.Windows.Forms.Padding(0);
             this.labelPreset8.Name = "labelPreset8";
             this.labelPreset8.Size = new System.Drawing.Size(35, 32);
@@ -1268,27 +1279,29 @@ namespace PracticeSession
             // buttonPreset8
             // 
             this.buttonPreset8.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonPreset8.Location = new System.Drawing.Point(411, 153);
+            this.buttonPreset8.Location = new System.Drawing.Point(48, 422);
             this.buttonPreset8.Name = "buttonPreset8";
-            this.buttonPreset8.Size = new System.Drawing.Size(276, 41);
+            this.buttonPreset8.Size = new System.Drawing.Size(371, 41);
             this.buttonPreset8.TabIndex = 123;
             this.buttonPreset8.Text = "<Preset not defined>";
             this.buttonPreset8.UseVisualStyleBackColor = true;
+            this.buttonPreset8.Click += new System.EventHandler(this.buttonPreset8_Click);
             // 
             // buttonPreset4
             // 
             this.buttonPreset4.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonPreset4.Location = new System.Drawing.Point(90, 153);
+            this.buttonPreset4.Location = new System.Drawing.Point(48, 230);
             this.buttonPreset4.Name = "buttonPreset4";
-            this.buttonPreset4.Size = new System.Drawing.Size(276, 41);
+            this.buttonPreset4.Size = new System.Drawing.Size(371, 41);
             this.buttonPreset4.TabIndex = 122;
             this.buttonPreset4.Text = "<Preset not defined>";
             this.buttonPreset4.UseVisualStyleBackColor = true;
+            this.buttonPreset4.Click += new System.EventHandler(this.buttonPreset4_Click);
             // 
             // labelPreset3
             // 
             this.labelPreset3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelPreset3.Location = new System.Drawing.Point(55, 110);
+            this.labelPreset3.Location = new System.Drawing.Point(10, 186);
             this.labelPreset3.Margin = new System.Windows.Forms.Padding(0);
             this.labelPreset3.Name = "labelPreset3";
             this.labelPreset3.Size = new System.Drawing.Size(35, 32);
@@ -1299,7 +1312,7 @@ namespace PracticeSession
             // labelPreset7
             // 
             this.labelPreset7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelPreset7.Location = new System.Drawing.Point(373, 110);
+            this.labelPreset7.Location = new System.Drawing.Point(10, 379);
             this.labelPreset7.Margin = new System.Windows.Forms.Padding(0);
             this.labelPreset7.Name = "labelPreset7";
             this.labelPreset7.Size = new System.Drawing.Size(35, 32);
@@ -1310,27 +1323,29 @@ namespace PracticeSession
             // buttonPreset7
             // 
             this.buttonPreset7.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonPreset7.Location = new System.Drawing.Point(411, 106);
+            this.buttonPreset7.Location = new System.Drawing.Point(48, 375);
             this.buttonPreset7.Name = "buttonPreset7";
-            this.buttonPreset7.Size = new System.Drawing.Size(276, 41);
+            this.buttonPreset7.Size = new System.Drawing.Size(371, 41);
             this.buttonPreset7.TabIndex = 119;
             this.buttonPreset7.Text = "<Preset not defined>";
             this.buttonPreset7.UseVisualStyleBackColor = true;
+            this.buttonPreset7.Click += new System.EventHandler(this.buttonPreset7_Click);
             // 
-            // button4
+            // buttonPreset3
             // 
-            this.button4.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button4.Location = new System.Drawing.Point(90, 106);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(276, 41);
-            this.button4.TabIndex = 118;
-            this.button4.Text = "<Preset not defined>";
-            this.button4.UseVisualStyleBackColor = true;
+            this.buttonPreset3.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonPreset3.Location = new System.Drawing.Point(48, 183);
+            this.buttonPreset3.Name = "buttonPreset3";
+            this.buttonPreset3.Size = new System.Drawing.Size(371, 41);
+            this.buttonPreset3.TabIndex = 118;
+            this.buttonPreset3.Text = "<Preset not defined>";
+            this.buttonPreset3.UseVisualStyleBackColor = true;
+            this.buttonPreset3.Click += new System.EventHandler(this.buttonPreset3_Click);
             // 
             // labelPreset2
             // 
             this.labelPreset2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelPreset2.Location = new System.Drawing.Point(55, 63);
+            this.labelPreset2.Location = new System.Drawing.Point(10, 139);
             this.labelPreset2.Margin = new System.Windows.Forms.Padding(0);
             this.labelPreset2.Name = "labelPreset2";
             this.labelPreset2.Size = new System.Drawing.Size(35, 32);
@@ -1341,7 +1356,7 @@ namespace PracticeSession
             // labelPreset6
             // 
             this.labelPreset6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelPreset6.Location = new System.Drawing.Point(373, 63);
+            this.labelPreset6.Location = new System.Drawing.Point(10, 332);
             this.labelPreset6.Margin = new System.Windows.Forms.Padding(0);
             this.labelPreset6.Name = "labelPreset6";
             this.labelPreset6.Size = new System.Drawing.Size(35, 32);
@@ -1352,27 +1367,29 @@ namespace PracticeSession
             // buttonPreset6
             // 
             this.buttonPreset6.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonPreset6.Location = new System.Drawing.Point(411, 59);
+            this.buttonPreset6.Location = new System.Drawing.Point(48, 328);
             this.buttonPreset6.Name = "buttonPreset6";
-            this.buttonPreset6.Size = new System.Drawing.Size(276, 41);
+            this.buttonPreset6.Size = new System.Drawing.Size(371, 41);
             this.buttonPreset6.TabIndex = 115;
             this.buttonPreset6.Text = "<Preset not defined>";
             this.buttonPreset6.UseVisualStyleBackColor = true;
+            this.buttonPreset6.Click += new System.EventHandler(this.buttonPreset6_Click);
             // 
-            // button2
+            // buttonPreset2
             // 
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button2.Location = new System.Drawing.Point(90, 59);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(276, 41);
-            this.button2.TabIndex = 114;
-            this.button2.Text = "<Preset not defined>";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonPreset2.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonPreset2.Location = new System.Drawing.Point(48, 136);
+            this.buttonPreset2.Name = "buttonPreset2";
+            this.buttonPreset2.Size = new System.Drawing.Size(371, 41);
+            this.buttonPreset2.TabIndex = 114;
+            this.buttonPreset2.Text = "<Preset not defined>";
+            this.buttonPreset2.UseVisualStyleBackColor = true;
+            this.buttonPreset2.Click += new System.EventHandler(this.buttonPreset2_Click);
             // 
             // labelPreset1
             // 
             this.labelPreset1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelPreset1.Location = new System.Drawing.Point(55, 15);
+            this.labelPreset1.Location = new System.Drawing.Point(10, 91);
             this.labelPreset1.Margin = new System.Windows.Forms.Padding(0);
             this.labelPreset1.Name = "labelPreset1";
             this.labelPreset1.Size = new System.Drawing.Size(35, 32);
@@ -1383,7 +1400,7 @@ namespace PracticeSession
             // labelPreset5
             // 
             this.labelPreset5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelPreset5.Location = new System.Drawing.Point(373, 15);
+            this.labelPreset5.Location = new System.Drawing.Point(10, 284);
             this.labelPreset5.Margin = new System.Windows.Forms.Padding(0);
             this.labelPreset5.Name = "labelPreset5";
             this.labelPreset5.Size = new System.Drawing.Size(35, 32);
@@ -1394,45 +1411,57 @@ namespace PracticeSession
             // buttonPreset5
             // 
             this.buttonPreset5.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonPreset5.Location = new System.Drawing.Point(411, 11);
+            this.buttonPreset5.Location = new System.Drawing.Point(48, 280);
             this.buttonPreset5.Name = "buttonPreset5";
-            this.buttonPreset5.Size = new System.Drawing.Size(276, 41);
+            this.buttonPreset5.Size = new System.Drawing.Size(371, 41);
             this.buttonPreset5.TabIndex = 111;
             this.buttonPreset5.Text = "<Preset not defined>";
             this.buttonPreset5.UseVisualStyleBackColor = true;
+            this.buttonPreset5.Click += new System.EventHandler(this.buttonPreset5_Click);
             // 
             // buttonPreset1
             // 
             this.buttonPreset1.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonPreset1.Location = new System.Drawing.Point(90, 11);
+            this.buttonPreset1.Location = new System.Drawing.Point(48, 88);
             this.buttonPreset1.Name = "buttonPreset1";
-            this.buttonPreset1.Size = new System.Drawing.Size(276, 41);
+            this.buttonPreset1.Size = new System.Drawing.Size(371, 41);
             this.buttonPreset1.TabIndex = 110;
             this.buttonPreset1.Text = "<Preset not defined>";
             this.buttonPreset1.UseVisualStyleBackColor = true;
+            this.buttonPreset1.Click += new System.EventHandler(this.buttonPreset1_Click);
+            // 
+            // pictureBoxRenderer
+            // 
+            this.pictureBoxRenderer.BackColor = System.Drawing.Color.White;
+            this.pictureBoxRenderer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxRenderer.Location = new System.Drawing.Point(15, 126);
+            this.pictureBoxRenderer.Name = "pictureBoxRenderer";
+            this.pictureBoxRenderer.Size = new System.Drawing.Size(1638, 319);
+            this.pictureBoxRenderer.TabIndex = 65;
+            this.pictureBoxRenderer.TabStop = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1214, 1347);
+            this.ClientSize = new System.Drawing.Size(1668, 1366);
+            this.Controls.Add(this.pictureBoxRenderer);
             this.Controls.Add(this.panelPresets);
             this.Controls.Add(this.panelLoop);
             this.Controls.Add(this.panelControls);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.buttonPlay);
             this.Controls.Add(this.buttonOpenFile);
-            this.Controls.Add(this.labelPositionValue);
             this.Controls.Add(this.labelPlayDuration);
             this.Controls.Add(this.labelPlayDuration3Q);
             this.Controls.Add(this.labelPlayDuration2Q);
             this.Controls.Add(this.labelPlayDuration1Q);
             this.Controls.Add(this.labelPlayDuration0Q);
-            this.Controls.Add(this.labelPosition);
             this.Controls.Add(this.trackBarPlayTime);
             this.Controls.Add(this.labelCurrentlyPlaying);
             this.Controls.Add(this.labelFilename);
             this.Controls.Add(this.menuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.Name = "MainForm";
             this.Text = "Practice Session";
@@ -1463,6 +1492,7 @@ namespace PracticeSession
             ((System.ComponentModel.ISupportInitialize)(this.upDownStartLoopSeconds)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.upDownStartLoopMinutes)).EndInit();
             this.panelPresets.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRenderer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1475,13 +1505,11 @@ namespace PracticeSession
         private System.Windows.Forms.Label labelFilename;
         private System.Windows.Forms.Label labelCurrentlyPlaying;
         private System.Windows.Forms.TrackBar trackBarPlayTime;
-        private System.Windows.Forms.Label labelPosition;
         private System.Windows.Forms.Label labelPlayDuration0Q;
         private System.Windows.Forms.Label labelPlayDuration1Q;
         private System.Windows.Forms.Label labelPlayDuration2Q;
         private System.Windows.Forms.Label labelPlayDuration3Q;
         private System.Windows.Forms.Label labelPlayDuration;
-        private System.Windows.Forms.Label labelPositionValue;
         private System.Windows.Forms.Timer PlayTimeUpdateTimer;
         private System.Windows.Forms.ToolStripMenuItem menuItemFile;
         private System.Windows.Forms.ToolStripMenuItem menuItemExit;
@@ -1561,7 +1589,7 @@ namespace PracticeSession
         private System.Windows.Forms.Label labelPreset2;
         private System.Windows.Forms.Label labelPreset6;
         private System.Windows.Forms.Button buttonPreset6;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonPreset2;
         private System.Windows.Forms.Label labelPreset1;
         private System.Windows.Forms.Label labelPreset5;
         private System.Windows.Forms.Button buttonPreset5;
@@ -1573,7 +1601,7 @@ namespace PracticeSession
         private System.Windows.Forms.Label labelPreset3;
         private System.Windows.Forms.Label labelPreset7;
         private System.Windows.Forms.Button buttonPreset7;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button buttonPreset3;
         private System.Windows.Forms.Button buttonReset;
         private System.Windows.Forms.Button buttonSavePreset;
         private System.Windows.Forms.NumericUpDown upDownCurrentMilliseconds;
@@ -1581,5 +1609,8 @@ namespace PracticeSession
         private System.Windows.Forms.NumericUpDown upDownCurrentMinutes;
         private System.Windows.Forms.Label labelEQMidValue;
         private System.Windows.Forms.Label labelEQLowValue;
+        private System.Windows.Forms.PictureBox pictureBoxRenderer;
+        private System.Windows.Forms.Label labelPositionValue;
+        private System.Windows.Forms.Label labelPosition;
     }
 }

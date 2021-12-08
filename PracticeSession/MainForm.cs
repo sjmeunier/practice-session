@@ -12,11 +12,19 @@ using PracticeSession.Core.Interfaces;
 using PracticeSession.Properties;
 using Microsoft.Extensions.Logging;
 using PracticeSession.Core.Models;
+using System.Text.Json;
+using System.Threading.Tasks;
+using NAudio.WaveFormRenderer;
 
 namespace PracticeSession
 {
     public partial class MainForm : Form
     {
+        private int _activePreset = 0;
+        private bool _isPresetSaveMode = false;
+        private bool _isPresetResetMode = false;
+        private PresetData[] _presetData = new PresetData[8]; 
+
         private readonly int _markerWidth = 5;
         private readonly int _markerHeight = 10;
         private string _currentFilename = "";
@@ -32,6 +40,7 @@ namespace PracticeSession
         private readonly int _ticksPerSemitone = 8;
 
         private readonly IAudioPlaybackService _audioPlaybackService;
+        private readonly IAudioRenderService _audioRenderService;
         private readonly ILogger _logger;
         private string _appDataFolder;
         private object _timerLock = new object();
@@ -46,11 +55,69 @@ namespace PracticeSession
         private MostRecentlyUsedList _recentFilesList;
         private readonly List<ToolStripMenuItem> _recentFilesMenuItems = new List<ToolStripMenuItem>();
 
-        public MainForm(ILogger<MainForm> logger, IAudioPlaybackService audioPlaybackService)
+        public MainForm(ILogger<MainForm> logger, IAudioPlaybackService audioPlaybackService, IAudioRenderService audioRenderService)
         {
             _logger = logger;
             _audioPlaybackService = audioPlaybackService;
+            _audioRenderService = audioRenderService;
             InitializeComponent();
+            LoadPresetData();
+        }
+
+        private void LoadPresetData()
+        {
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(Properties.Settings.Default.PresetData))
+                {
+                    _presetData = JsonSerializer.Deserialize<PresetData[]>(Properties.Settings.Default.PresetData);
+                }
+
+                if (_presetData == null || string.IsNullOrWhiteSpace(Properties.Settings.Default.PresetData))
+                {
+                    for (var i = 0; i < 8; i++)
+                    {
+                        _presetData[i] = new PresetData();
+                    }
+                }
+            }
+            catch
+            {
+                //Default to empty presets
+                for (var i = 0; i < 8; i++)
+                {
+                    _presetData[i] = new PresetData();
+                }
+            }
+
+            buttonPreset1.Text = GeneratePresetButtonText(_presetData[0].Name);
+            buttonPreset2.Text = GeneratePresetButtonText(_presetData[1].Name);
+            buttonPreset3.Text = GeneratePresetButtonText(_presetData[2].Name);
+            buttonPreset4.Text = GeneratePresetButtonText(_presetData[3].Name);
+            buttonPreset5.Text = GeneratePresetButtonText(_presetData[4].Name);
+            buttonPreset6.Text = GeneratePresetButtonText(_presetData[5].Name);
+            buttonPreset7.Text = GeneratePresetButtonText(_presetData[6].Name);
+            buttonPreset8.Text = GeneratePresetButtonText(_presetData[7].Name);
+        }
+
+        private string GeneratePresetButtonText(string name)
+        {
+            string buttonText = "<Preset not defined>";
+
+            name = name.Trim();
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                if (name.Length > 18)
+                {
+                    buttonText = name.Substring(0, 18) + "..";
+                }
+                else
+                {
+                    buttonText = name;
+                }
+            }
+
+            return buttonText;
         }
 
         private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -192,8 +259,13 @@ namespace PracticeSession
                 _recentFilesList.Add(filename);
                 _currentFilename = filename;
 
+
                 Properties.Settings.Default.LastUsedFilename = filename;
                 Properties.Settings.Default.Save();
+
+                Task.Factory.StartNew(() => RenderThreadFunc(filename));
+
+
                 labelFilename.Text = Path.GetFileName(filename);
                 _audioPlaybackService.LoadFile(filename);
 
@@ -221,6 +293,36 @@ namespace PracticeSession
             }
 
             return true;
+        }
+
+        private void RenderThreadFunc(string filename)
+        {
+            IPeakProvider peakProvider = new MaxPeakProvider();
+            WaveFormRendererSettings settings = new StandardWaveFormRendererSettings()
+            {
+                TopHeight = pictureBoxRenderer.Height  / 2 - 5,
+                BottomHeight = pictureBoxRenderer.Height / 2 - 5,
+                Width = pictureBoxRenderer.Width,
+                BackgroundColor = Color.White,
+                DecibelScale = false
+            };
+
+            Image image = null;
+            try
+            {
+                image = _audioRenderService.RenderAudio(filename, peakProvider, settings);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            BeginInvoke((Action)(() => FinishedRender(image)));
+        }
+
+        private void FinishedRender(Image image)
+        {
+            pictureBoxRenderer.Image = image;
+            Enabled = true;
         }
 
         private void ToggleControls(bool enable)
@@ -502,6 +604,15 @@ namespace PracticeSession
 
         private void trackBarPlayTime_ValueChanged(object sender, EventArgs e)
         {
+            if (trackBarPlayTime.Value == 0)
+            {
+                pictureBoxPosition.Width = 0;
+            }
+            else
+            {
+                pictureBoxPosition.Width = pictureBoxRenderer.Width * trackBarPlayTime.Value / 100;
+            }
+
             if (_ignorePlayTimeUIEvents)
                 return;
             if (_audioPlaybackService == null)
@@ -957,6 +1068,276 @@ namespace PracticeSession
             _audioPlaybackService.CurrentPlayTime = currentPlayTime;
 
             UpdateCurrentPlaytime(currentPlayTime, _audioPlaybackService.FilePlayDuration);
+        }
+
+        private void buttonSavePreset_Click(object sender, EventArgs e)
+        {
+            _isPresetSaveMode = !_isPresetSaveMode;
+
+            if (_isPresetSaveMode)
+            {
+                _isPresetResetMode = false;
+                buttonReset.BackColor = SystemColors.Control;
+                buttonSavePreset.BackColor = SystemColors.ControlDark;
+            }
+            else
+            {
+                buttonSavePreset.BackColor = SystemColors.Control;
+            }
+        }
+
+        private void buttonReset_Click(object sender, EventArgs e)
+        {
+            _isPresetResetMode = !_isPresetResetMode;
+
+            if (_isPresetResetMode)
+            {
+                _isPresetSaveMode = false;
+                buttonSavePreset.BackColor = SystemColors.Control;
+                buttonReset.BackColor = SystemColors.ControlDark;
+            }
+            else
+            {
+                buttonReset.BackColor = SystemColors.Control;
+            }
+        }
+
+        private void UpdatePresetButtonUI()
+        {
+            buttonPreset1.BackColor = SystemColors.Control;
+            buttonPreset2.BackColor = SystemColors.Control;
+            buttonPreset3.BackColor = SystemColors.Control;
+            buttonPreset4.BackColor = SystemColors.Control;
+            buttonPreset5.BackColor = SystemColors.Control;
+            buttonPreset6.BackColor = SystemColors.Control;
+            buttonPreset7.BackColor = SystemColors.Control;
+            buttonPreset8.BackColor = SystemColors.Control;
+
+            buttonPreset1.Text = GeneratePresetButtonText(_presetData[0].Name);
+            buttonPreset2.Text = GeneratePresetButtonText(_presetData[1].Name);
+            buttonPreset3.Text = GeneratePresetButtonText(_presetData[2].Name);
+            buttonPreset4.Text = GeneratePresetButtonText(_presetData[3].Name);
+            buttonPreset5.Text = GeneratePresetButtonText(_presetData[4].Name);
+            buttonPreset6.Text = GeneratePresetButtonText(_presetData[5].Name);
+            buttonPreset7.Text = GeneratePresetButtonText(_presetData[6].Name);
+            buttonPreset8.Text = GeneratePresetButtonText(_presetData[7].Name);
+
+            switch (_activePreset)
+            {
+                case 1:
+                    buttonPreset1.BackColor = SystemColors.ControlDark;
+                    break;
+                case 2:
+                    buttonPreset2.BackColor = SystemColors.ControlDark;
+                    break;
+                case 3:
+                    buttonPreset3.BackColor = SystemColors.ControlDark;
+                    break;
+                case 4:
+                    buttonPreset4.BackColor = SystemColors.ControlDark;
+                    break;
+                case 5:
+                    buttonPreset5.BackColor = SystemColors.ControlDark;
+                    break;
+                case 6:
+                    buttonPreset6.BackColor = SystemColors.ControlDark;
+                    break;
+                case 7:
+                    buttonPreset7.BackColor = SystemColors.ControlDark;
+                    break;
+                case 8:
+                    buttonPreset8.BackColor = SystemColors.ControlDark;
+                    break;
+            }
+        }
+
+        private void ApplyPresetValues(PresetData presetData)
+        {
+            // Apply preset values
+            trackBarTempo.Value = Convert.ToInt32(presetData.Tempo * 100.0f);
+            trackBarPitch.Value = Convert.ToInt32(presetData.Pitch * _ticksPerSemitone);
+            trackBarVolume.Value = Convert.ToInt32(presetData.Volume * 100.0f);
+            trackBarEQLow.Value = Convert.ToInt32(presetData.LoEqValue * 100.0f);
+            trackBarEQLow_ValueChanged(this, new EventArgs());
+            trackBarEQMid.Value = Convert.ToInt32(presetData.MedEqValue * 100.0f);
+            trackBarEQMid_ValueChanged(this, new EventArgs());
+            trackBarEQHi.Value = Convert.ToInt32(presetData.HiEqValue * 100.0f);
+            trackBarEQHi_ValueChanged(this, new EventArgs());
+
+            upDownCue.Value = (decimal)presetData.Cue.TotalSeconds;
+
+            // Find matching Time Stretch Profile
+            if (presetData.TimeStretchProfile == null)
+            {
+                comboBoxTimeStretchProfile.SelectedIndex = 0;
+            }
+            else
+            {
+                for (int itemIndex = 0; itemIndex < comboBoxTimeStretchProfile.Items.Count; itemIndex++)
+                {
+                    TimeStretchProfile profile = comboBoxTimeStretchProfile.Items[itemIndex] as TimeStretchProfile;
+
+                    if (profile.Id == presetData.TimeStretchProfile.Id)
+                    {
+                        comboBoxTimeStretchProfile.SelectedIndex = itemIndex;
+                        break;
+                    }
+                }
+                comboBoxTimeStretchProfile.SelectedValue = presetData.TimeStretchProfile;
+            }
+
+            checkBoxSuppressVocals.Checked = presetData.SuppressVocals;
+            switch (presetData.InputChannelMode)
+            {
+                case InputChannelMode.Left:
+                    buttonChannelBoth.Checked = false;
+                    buttonChannelLeft.Checked = true;
+                    buttonChannelRight.Checked = false;
+                    buttonChannelDualMono.Checked = false;
+                    _audioPlaybackService.InputChannelMode = InputChannelMode.Left;
+                    break;
+                case InputChannelMode.Right:
+                    buttonChannelBoth.Checked = false;
+                    buttonChannelLeft.Checked = false;
+                    buttonChannelRight.Checked = true;
+                    buttonChannelDualMono.Checked = false;
+                    _audioPlaybackService.InputChannelMode = InputChannelMode.Right;
+                    break;
+                case InputChannelMode.DualMono:
+                    buttonChannelBoth.Checked = false;
+                    buttonChannelLeft.Checked = false;
+                    buttonChannelRight.Checked = false;
+                    buttonChannelDualMono.Checked = true;
+                    _audioPlaybackService.InputChannelMode = InputChannelMode.DualMono;
+                    break;
+                default:
+                    buttonChannelBoth.Checked = true;
+                    buttonChannelLeft.Checked = false;
+                    buttonChannelRight.Checked = false;
+                    buttonChannelDualMono.Checked = false;
+                    _audioPlaybackService.InputChannelMode = InputChannelMode.Both;
+                    break;
+            }
+            checkBoxSwapLR.Checked = presetData.SwapLeftRightSpeakers;
+        }
+
+
+        private void SavePreset(int presetIndex)
+        {
+            string name = string.Empty;
+            var result = Dialogs.InputBox("Save", "Enter name for save slot", ref name);
+
+            if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(name))
+            {
+                _presetData[presetIndex - 1] = new PresetData()
+                {
+                    Name = name.Trim(),
+                    Tempo = _audioPlaybackService.Tempo,
+                    Pitch = _audioPlaybackService.Pitch,
+                    Volume = _audioPlaybackService.Volume,
+                    LoEqValue = _audioPlaybackService.EqualizerLoBand,
+                    MedEqValue = _audioPlaybackService.EqualizerMedBand,
+                    HiEqValue = _audioPlaybackService.EqualizerHiBand,
+                    Cue = _audioPlaybackService.Cue,
+                    Loop = _audioPlaybackService.Loop,
+                    TimeStretchProfile = _audioPlaybackService.TimeStretchProfile,
+                    SuppressVocals = _audioPlaybackService.SuppressVocals,
+                    InputChannelMode = _audioPlaybackService.InputChannelMode,
+                    SwapLeftRightSpeakers = _audioPlaybackService.SwapLeftRightSpeakers
+                };
+
+                Properties.Settings.Default.PresetData = JsonSerializer.Serialize(_presetData);
+                Properties.Settings.Default.Save();
+
+                _activePreset = presetIndex;
+                UpdatePresetButtonUI();
+            }
+            _isPresetSaveMode = false;
+            buttonSavePreset.BackColor = SystemColors.Control;
+        }
+
+        private void ResetPreset(int presetIndex)
+        {
+            _presetData[presetIndex - 1] = new PresetData();
+
+            Properties.Settings.Default.PresetData = JsonSerializer.Serialize(_presetData);
+            Properties.Settings.Default.Save();
+
+            if (_activePreset == presetIndex)
+            {
+                _activePreset = 0;
+                UpdatePresetButtonUI();
+            }
+            _isPresetResetMode = false;
+            buttonReset.BackColor = SystemColors.Control;
+        }
+
+        private void ProcessPresetClick(int presetIndex)
+        {
+            if (_isPresetSaveMode)
+            {
+                SavePreset(presetIndex);
+            }
+            else if (_isPresetResetMode)
+            {
+                ResetPreset(presetIndex);
+            }
+            else
+            {
+                _activePreset = presetIndex;
+                UpdatePresetButtonUI();
+                ApplyPresetValues(_presetData[presetIndex - 1]);
+            }
+        }
+
+        private void buttonPreset1_Click(object sender, EventArgs e)
+        {
+            ProcessPresetClick(1);
+        }
+
+        private void buttonPreset2_Click(object sender, EventArgs e)
+        {
+            ProcessPresetClick(2);
+        }
+
+        private void buttonPreset3_Click(object sender, EventArgs e)
+        {
+            ProcessPresetClick(3);
+        }
+
+        private void buttonPreset4_Click(object sender, EventArgs e)
+        {
+            ProcessPresetClick(4);
+        }
+
+        private void buttonPreset5_Click(object sender, EventArgs e)
+        {
+            ProcessPresetClick(5);
+        }
+
+        private void buttonPreset6_Click(object sender, EventArgs e)
+        {
+            ProcessPresetClick(6);
+        }
+
+        private void buttonPreset7_Click(object sender, EventArgs e)
+        {
+            ProcessPresetClick(7);
+        }
+
+        private void buttonPreset8_Click(object sender, EventArgs e)
+        {
+            ProcessPresetClick(8);
+        }
+
+        private void labelCurrentlyPlaying_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelFilename_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
