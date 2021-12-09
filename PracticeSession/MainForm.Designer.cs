@@ -148,6 +148,8 @@ namespace PracticeSession
             this.menuItemRecent8 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.panelControls.SuspendLayout();
             this.toolStripChannels.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.upDownCue)).BeginInit();
@@ -1603,6 +1605,7 @@ namespace PracticeSession
             this.sliderPlayTime.TrackStyle = MediaSlider.MediaSlider.TrackType.Progress;
             this.sliderPlayTime.Value = 0;
             this.sliderPlayTime.ValueChanged += new MediaSlider.MediaSlider.ValueChangedDelegate(this.sliderPlayTime_ValueChanged);
+            this.sliderPlayTime.MouseDown += new System.Windows.Forms.MouseEventHandler(this.sliderPlayTime_MouseDown);
             // 
             // menuStrip
             // 
@@ -1610,7 +1613,8 @@ namespace PracticeSession
             this.menuStrip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemFile});
+            this.toolStripMenuItemFile,
+            this.toolStripMenuHelp});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(3, 2, 0, 2);
@@ -1719,6 +1723,25 @@ namespace PracticeSession
             this.menuItemExit.Name = "menuItemExit";
             this.menuItemExit.Size = new System.Drawing.Size(342, 44);
             this.menuItemExit.Text = "E&xit";
+            // 
+            // toolStripMenuHelp
+            // 
+            this.toolStripMenuHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.toolStripMenuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemAbout});
+            this.toolStripMenuHelp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.toolStripMenuHelp.Name = "toolStripMenuHelp";
+            this.toolStripMenuHelp.Size = new System.Drawing.Size(84, 36);
+            this.toolStripMenuHelp.Text = "&Help";
+            this.toolStripMenuHelp.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuItemHelp_Clicked);
+            // 
+            // menuItemAbout
+            // 
+            this.menuItemAbout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menuItemAbout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menuItemAbout.Name = "menuItemAbout";
+            this.menuItemAbout.Size = new System.Drawing.Size(212, 44);
+            this.menuItemAbout.Text = "&About";
             // 
             // MainForm
             // 
@@ -1887,5 +1910,7 @@ namespace PracticeSession
         private DarkUI.Controls.DarkButton buttonStartLoopNow;
         private Label label4;
         private Label label3;
+        private ToolStripMenuItem toolStripMenuHelp;
+        private ToolStripMenuItem menuItemAbout;
     }
 }

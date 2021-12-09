@@ -140,6 +140,18 @@ namespace PracticeSession
             
         }
 
+        private void menuItemHelp_Clicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            switch (e.ClickedItem.Name)
+            {
+                case "menuItemAbout":
+                    AboutForm aboutForm = new AboutForm();
+                    aboutForm.ShowDialog();
+                    break;
+            }
+
+        }
+
         private void menuItemFile_DropDownOpening(object sender, EventArgs e)
         {
             List<string> mruItems = _recentFilesList.Items;
@@ -276,14 +288,17 @@ namespace PracticeSession
 
                 ToggleControls(true);
 
-                labelPlayDuration.Text =
-                    $"{_audioPlaybackService.FilePlayDuration.Minutes:00}:{_audioPlaybackService.FilePlayDuration.Seconds:00)}";
-                labelPlayDuration1Q.Text =
-                    $"{(_audioPlaybackService.FilePlayDuration.TotalSeconds / 4 / 60):00}:{(_audioPlaybackService.FilePlayDuration.Seconds / 4):00}";
-                labelPlayDuration2Q.Text =
-                    $"{(_audioPlaybackService.FilePlayDuration.Minutes / 2):00}:{(_audioPlaybackService.FilePlayDuration.Seconds / 2):00}";
-                labelPlayDuration3Q.Text =
-                    $"{(_audioPlaybackService.FilePlayDuration.TotalSeconds * 3 / 4 / 60):00}:{(_audioPlaybackService.FilePlayDuration.Seconds * 3 / 4):00}";
+                var duration = new MinSecTime(_audioPlaybackService.FilePlayDuration.TotalSeconds);
+                labelPlayDuration.Text =  $"{duration.Minutes:00}:{duration.Seconds:00}";
+
+                 duration = new MinSecTime(_audioPlaybackService.FilePlayDuration.TotalSeconds / 4.0);
+                labelPlayDuration1Q.Text = $"{duration.Minutes:00}:{duration.Seconds:00}";
+                duration = new MinSecTime(_audioPlaybackService.FilePlayDuration.TotalSeconds / 2.0);
+                labelPlayDuration2Q.Text = $"{duration.Minutes:00}:{duration.Seconds:00}";
+                duration = new MinSecTime(_audioPlaybackService.FilePlayDuration.TotalSeconds * 3.0 / 4.0);
+                labelPlayDuration3Q.Text = $"{duration.Minutes:00}:{duration.Seconds:00}";
+
+                sliderPlayTime.Value = 0;
 
                 if (autoPlay)
                 {
@@ -299,6 +314,7 @@ namespace PracticeSession
 
             return true;
         }
+
 
         private void RenderThreadFunc(string filename)
         {
@@ -1348,6 +1364,12 @@ namespace PracticeSession
         private void labelFilename_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void sliderPlayTime_MouseDown(object sender, MouseEventArgs e)
+        {
+            double value = ((double)e.X / (double)sliderPlayTime.Width) * (sliderPlayTime.Maximum - sliderPlayTime.Minimum);
+            sliderPlayTime.Value = Convert.ToInt32(value);
         }
     }
 }
