@@ -15,6 +15,7 @@ using PracticeSession.Core.Models;
 using System.Text.Json;
 using System.Threading.Tasks;
 using NAudio.WaveFormRenderer;
+using PracticeSession.Themes;
 
 namespace PracticeSession
 {
@@ -25,16 +26,12 @@ namespace PracticeSession
         private bool _isPresetResetMode = false;
         private PresetData[] _presetData = new PresetData[8]; 
 
-        private readonly int _markerWidth = 5;
-        private readonly int _markerHeight = 10;
         private string _currentFilename = "";
 
         private readonly int _maxRecentDisplayLength = 60;
 
         // msec
         private readonly int _maskOutInterval = 450;
-
-        private readonly int _jumpSeconds = 2;
 
         // 96 ticks are 12 semitones => each 8 ticks is one semitone
         private readonly int _ticksPerSemitone = 8;
@@ -55,12 +52,20 @@ namespace PracticeSession
         private MostRecentlyUsedList _recentFilesList;
         private readonly List<ToolStripMenuItem> _recentFilesMenuItems = new List<ToolStripMenuItem>();
 
+        private Theme _theme = new DarkTheme();
+
         public MainForm(ILogger<MainForm> logger, IAudioPlaybackService audioPlaybackService, IAudioRenderService audioRenderService)
         {
             _logger = logger;
             _audioPlaybackService = audioPlaybackService;
             _audioRenderService = audioRenderService;
             InitializeComponent();
+
+            //Little hack to fix a bug in DarkUI
+            this.buttonChannelDualMono.Size = new System.Drawing.Size(93, 36);
+            this.buttonChannelBoth.Size = new System.Drawing.Size(93, 36);
+            this.buttonChannelLeft.Size = new System.Drawing.Size(93, 36);
+            this.buttonChannelRight.Size = new System.Drawing.Size(93, 36);
             LoadPresetData();
         }
 
@@ -235,8 +240,8 @@ namespace PracticeSession
             else if (_audioPlaybackService.PlaybackStatus == PlaybackStatus.Stopped)
             {
                 // Playing has stopped, need to reload the file
-                if (trackBarPlayTime.Value == trackBarPlayTime.Maximum)
-                    trackBarPlayTime.Value = trackBarPlayTime.Minimum;
+                if (sliderPlayTime.Value == sliderPlayTime.Maximum)
+                    sliderPlayTime.Value = sliderPlayTime.Minimum;
 
                 buttonPlay.Image = Resources.Play;
                 OpenFile(_currentFilename, false);
@@ -303,7 +308,9 @@ namespace PracticeSession
                 TopHeight = pictureBoxRenderer.Height  / 2 - 5,
                 BottomHeight = pictureBoxRenderer.Height / 2 - 5,
                 Width = pictureBoxRenderer.Width,
-                BackgroundColor = Color.White,
+                BackgroundColor = Color.FromArgb(255, 40, 40, 40),
+                TopPeakPen = new Pen(Color.FromArgb(255, 0, 200, 40)),
+                BottomPeakPen = new Pen(Color.FromArgb(255, 200, 160, 0)),
                 DecibelScale = false
             };
 
@@ -328,12 +335,12 @@ namespace PracticeSession
         private void ToggleControls(bool enable)
         {
             buttonPlay.Enabled = enable;
-            trackBarPlayTime.Enabled = enable;
-            trackBarPitch.Enabled = enable;
-            trackBarVolume.Enabled = enable;
-            trackBarEQLow.Enabled = enable;
-            trackBarEQMid.Enabled = enable;
-            trackBarEQHi.Enabled = enable;
+            sliderPlayTime.Enabled = enable;
+            sliderPitch.Enabled = enable;
+            sliderVolume.Enabled = enable;
+            sliderEQLow.Enabled = enable;
+            sliderEQMid.Enabled = enable;
+            sliderEQHi.Enabled = enable;
             upDownCue.Enabled = enable;
         }
 
@@ -380,10 +387,10 @@ namespace PracticeSession
             //cueComboBox.SelectedIndex = 0;
 
             // Set defaults
-            trackBarTempo_ValueChanged(this, new EventArgs());
-            trackBarPitch_ValueChanged(this, new EventArgs());
-            trackBarVolume_ValueChanged(this, new EventArgs());
-            trackBarPlayTime_ValueChanged(this, new EventArgs());
+            sliderTempo_ValueChanged(this, new EventArgs());
+            sliderPitch_ValueChanged(this, new EventArgs());
+            sliderVolume_ValueChanged(this, new EventArgs());
+            sliderPlayTime_ValueChanged(this, new EventArgs());
 
             InitializeTimeStretchProfiles();
         }
@@ -411,11 +418,11 @@ namespace PracticeSession
                     int currentPlayTimeValue = 0;
                     if (_audioPlaybackService.FilePlayDuration.TotalSeconds > 0)
                     {
-                        currentPlayTimeValue = Convert.ToInt32(100.0f * _audioPlaybackService.CurrentPlayTime.TotalSeconds / _audioPlaybackService.FilePlayDuration.TotalSeconds);
-                        if (currentPlayTimeValue > trackBarPlayTime.Maximum)
-                            currentPlayTimeValue = trackBarPlayTime.Maximum;
+                        currentPlayTimeValue = Convert.ToInt32((float)sliderPlayTime.Maximum * _audioPlaybackService.CurrentPlayTime.TotalSeconds / _audioPlaybackService.FilePlayDuration.TotalSeconds);
+                        if (currentPlayTimeValue > sliderPlayTime.Maximum)
+                            currentPlayTimeValue = sliderPlayTime.Maximum;
                     }
-                    trackBarPlayTime.Value = currentPlayTimeValue;
+                    sliderPlayTime.Value = currentPlayTimeValue;
                     //positionMarkersPanel.Refresh();
                 }
                 else if (e.PlaybackStatus == PlaybackStatus.Playing)
@@ -502,24 +509,24 @@ namespace PracticeSession
             }
         }
 
-        private void trackBarTempo_ValueChanged(object sender, EventArgs e)
+        private void sliderTempo_ValueChanged(object sender, EventArgs e)
         {
             if (_audioPlaybackService == null)
                 return;
 
-            float newTempo = trackBarTempo.Value / 100.0f;
+            float newTempo = sliderTempo.Value / 100.0f;
             _audioPlaybackService.Tempo = newTempo;
 
-            labelTempoValue.ForeColor = (newTempo != 1.0f) ? Color.Blue : Color.Black;
+            labelTempoValue.ForeColor = (newTempo != 1.0f) ? Color.FromArgb(255, 200, 200, 255) : Color.White;
             labelTempoValue.Text = $"x{newTempo}";
         }
 
-        private void trackBarPitch_ValueChanged(object sender, EventArgs e)
+        private void sliderPitch_ValueChanged(object sender, EventArgs e)
         {
             if (_audioPlaybackService == null)
                 return;
 
-            float newPitchSemiTones = trackBarPitch.Value / (float)_ticksPerSemitone;
+            float newPitchSemiTones = sliderPitch.Value / (float)_ticksPerSemitone;
             _audioPlaybackService.Pitch = newPitchSemiTones;
 
 
@@ -554,63 +561,63 @@ namespace PracticeSession
                 }
             }
 
-            labelPitchValue.ForeColor = (newPitchSemiTones != 0) ? Color.Blue : Color.Black;
+            labelPitchValue.ForeColor = (newPitchSemiTones != 0) ? Color.FromArgb(255, 200, 200, 255) : Color.White;
             labelPitchValue.Text = pitchValue;
         }
 
-        private void trackBarVolume_ValueChanged(object sender, EventArgs e)
+        private void sliderVolume_ValueChanged(object sender, EventArgs e)
         {
             if (_audioPlaybackService == null)
                 return;
 
-            float newVolume = trackBarVolume.Value / 100.0f;
+            float newVolume = sliderVolume.Value / 100.0f;
             _audioPlaybackService.Volume = newVolume;
 
-            labelVolumeValue.Text = $"{trackBarVolume.Value}%";
+            labelVolumeValue.Text = $"{sliderVolume.Value}%";
         }
 
-        private void trackBarEQLow_ValueChanged(object sender, EventArgs e)
+        private void sliderEQLow_ValueChanged(object sender, EventArgs e)
         {
             if (_audioPlaybackService == null)
                 return;
 
-            float newEqLow = trackBarEQLow.Value / 100.0f;
+            float newEqLow = sliderEQLow.Value / 100.0f;
             _audioPlaybackService.EqualizerLoBand = newEqLow;
 
-            labelEQLowValue.Text = $"{trackBarEQLow.Value}%";
+            labelEQLowValue.Text = $"{sliderEQLow.Value}%";
         }
 
-        private void trackBarEQMid_ValueChanged(object sender, EventArgs e)
+        private void sliderEQMid_ValueChanged(object sender, EventArgs e)
         {
             if (_audioPlaybackService == null)
                 return;
 
-            float newEqMid= trackBarEQMid.Value / 100.0f;
+            float newEqMid= sliderEQMid.Value / 100.0f;
             _audioPlaybackService.EqualizerMedBand = newEqMid;
 
-            labelEQMidValue.Text = $"{trackBarEQMid.Value}%";
+            labelEQMidValue.Text = $"{sliderEQMid.Value}%";
         }
 
-        private void trackBarEQHi_ValueChanged(object sender, EventArgs e)
+        private void sliderEQHi_ValueChanged(object sender, EventArgs e)
         {
             if (_audioPlaybackService == null)
                 return;
 
-            float newEqHi = trackBarEQHi.Value / 100.0f;
+            float newEqHi = sliderEQHi.Value / 100.0f;
             _audioPlaybackService.EqualizerHiBand = newEqHi;
 
-            labelEQHiValue.Text = $"{trackBarEQHi.Value}%";
+            labelEQHiValue.Text = $"{sliderEQHi.Value}%";
         }
 
-        private void trackBarPlayTime_ValueChanged(object sender, EventArgs e)
+        private void sliderPlayTime_ValueChanged(object sender, EventArgs e)
         {
-            if (trackBarPlayTime.Value == 0)
+            if (sliderPlayTime.Value == 0)
             {
-                pictureBoxPosition.Width = 0;
+                overlayPosition.Left = pictureBoxRenderer.Left;
             }
             else
             {
-                pictureBoxPosition.Width = pictureBoxRenderer.Width * trackBarPlayTime.Value / 100;
+                overlayPosition.Left = pictureBoxRenderer.Left + pictureBoxRenderer.Width * sliderPlayTime.Value / sliderPlayTime.Maximum;
             }
 
             if (_ignorePlayTimeUIEvents)
@@ -618,7 +625,7 @@ namespace PracticeSession
             if (_audioPlaybackService == null)
                 return;
 
-            float playPosSeconds = (float)(trackBarPlayTime.Value / 100.0f * _audioPlaybackService.FilePlayDuration.TotalSeconds);
+            float playPosSeconds = (float)(sliderPlayTime.Value / (float)sliderPlayTime.Maximum * _audioPlaybackService.FilePlayDuration.TotalSeconds);
             TimeSpan newPlayTime = new TimeSpan(0, 0, 0, (int)playPosSeconds,
                 (int)(100 * (playPosSeconds - Math.Truncate(playPosSeconds))));
 
@@ -689,13 +696,13 @@ namespace PracticeSession
 
         private void UpdatePlayTimeTrackBarCurrentValue()
         {
-            int currentPlayTimeValue = Convert.ToInt32(100.0f * _audioPlaybackService.CurrentPlayTime.TotalSeconds / _audioPlaybackService.FilePlayDuration.TotalSeconds);
-            if (currentPlayTimeValue > trackBarPlayTime.Maximum)
+            int currentPlayTimeValue = Convert.ToInt32((float)sliderPlayTime.Maximum * _audioPlaybackService.CurrentPlayTime.TotalSeconds / _audioPlaybackService.FilePlayDuration.TotalSeconds);
+            if (currentPlayTimeValue > sliderPlayTime.Maximum)
             {
-                currentPlayTimeValue = trackBarPlayTime.Maximum;
+                currentPlayTimeValue = sliderPlayTime.Maximum;
             }
 
-            trackBarPlayTime.Value = currentPlayTimeValue;
+            sliderPlayTime.Value = currentPlayTimeValue;
         }
 
         private void RecentMenuItem_Click(object sender, EventArgs e)
@@ -1053,7 +1060,7 @@ namespace PracticeSession
 
             if (_audioPlaybackService.PlaybackStatus != PlaybackStatus.Playing)
             {
-                trackBarPlayTime.Value = Convert.ToInt32(100.0f * currentPlayTime.TotalSeconds / _audioPlaybackService.FilePlayDuration.TotalSeconds);
+                sliderPlayTime.Value = Convert.ToInt32((float)sliderPlayTime.Maximum * currentPlayTime.TotalSeconds / _audioPlaybackService.FilePlayDuration.TotalSeconds);
             }
         }
 
@@ -1077,12 +1084,12 @@ namespace PracticeSession
             if (_isPresetSaveMode)
             {
                 _isPresetResetMode = false;
-                buttonReset.BackColor = SystemColors.Control;
-                buttonSavePreset.BackColor = SystemColors.ControlDark;
+                buttonReset.BackColor = Color.FromArgb(255, 30, 30, 30);
+                buttonSavePreset.BackColor = Color.FromArgb(255, 60, 60, 60);
             }
             else
             {
-                buttonSavePreset.BackColor = SystemColors.Control;
+                buttonSavePreset.BackColor = Color.FromArgb(255, 30, 30, 30);
             }
         }
 
@@ -1093,25 +1100,28 @@ namespace PracticeSession
             if (_isPresetResetMode)
             {
                 _isPresetSaveMode = false;
-                buttonSavePreset.BackColor = SystemColors.Control;
-                buttonReset.BackColor = SystemColors.ControlDark;
+                buttonSavePreset.BackColor = Color.FromArgb(255, 30, 30, 30);
+                buttonReset.BackColor = Color.FromArgb(255, 60, 60, 60);
             }
             else
             {
-                buttonReset.BackColor = SystemColors.Control;
+                buttonReset.BackColor = Color.FromArgb(255, 30, 30, 30);
             }
         }
 
         private void UpdatePresetButtonUI()
         {
-            buttonPreset1.BackColor = SystemColors.Control;
-            buttonPreset2.BackColor = SystemColors.Control;
-            buttonPreset3.BackColor = SystemColors.Control;
-            buttonPreset4.BackColor = SystemColors.Control;
-            buttonPreset5.BackColor = SystemColors.Control;
-            buttonPreset6.BackColor = SystemColors.Control;
-            buttonPreset7.BackColor = SystemColors.Control;
-            buttonPreset8.BackColor = SystemColors.Control;
+            Color selectedColor = Color.FromArgb(255, 60, 60, 60);
+            Color unselectedColor = Color.FromArgb(255, 30, 30, 30);
+
+            buttonPreset1.BackColor = unselectedColor;
+            buttonPreset2.BackColor = unselectedColor;
+            buttonPreset3.BackColor = unselectedColor;
+            buttonPreset4.BackColor = unselectedColor;
+            buttonPreset5.BackColor = unselectedColor;
+            buttonPreset6.BackColor = unselectedColor;
+            buttonPreset7.BackColor = unselectedColor;
+            buttonPreset8.BackColor = unselectedColor;
 
             buttonPreset1.Text = GeneratePresetButtonText(_presetData[0].Name);
             buttonPreset2.Text = GeneratePresetButtonText(_presetData[1].Name);
@@ -1125,28 +1135,28 @@ namespace PracticeSession
             switch (_activePreset)
             {
                 case 1:
-                    buttonPreset1.BackColor = SystemColors.ControlDark;
+                    buttonPreset1.BackColor = selectedColor;
                     break;
                 case 2:
-                    buttonPreset2.BackColor = SystemColors.ControlDark;
+                    buttonPreset2.BackColor = selectedColor;
                     break;
                 case 3:
-                    buttonPreset3.BackColor = SystemColors.ControlDark;
+                    buttonPreset3.BackColor = selectedColor;
                     break;
                 case 4:
-                    buttonPreset4.BackColor = SystemColors.ControlDark;
+                    buttonPreset4.BackColor = selectedColor;
                     break;
                 case 5:
-                    buttonPreset5.BackColor = SystemColors.ControlDark;
+                    buttonPreset5.BackColor = selectedColor;
                     break;
                 case 6:
-                    buttonPreset6.BackColor = SystemColors.ControlDark;
+                    buttonPreset6.BackColor = selectedColor;
                     break;
                 case 7:
-                    buttonPreset7.BackColor = SystemColors.ControlDark;
+                    buttonPreset7.BackColor = selectedColor;
                     break;
                 case 8:
-                    buttonPreset8.BackColor = SystemColors.ControlDark;
+                    buttonPreset8.BackColor = selectedColor;
                     break;
             }
         }
@@ -1154,15 +1164,15 @@ namespace PracticeSession
         private void ApplyPresetValues(PresetData presetData)
         {
             // Apply preset values
-            trackBarTempo.Value = Convert.ToInt32(presetData.Tempo * 100.0f);
-            trackBarPitch.Value = Convert.ToInt32(presetData.Pitch * _ticksPerSemitone);
-            trackBarVolume.Value = Convert.ToInt32(presetData.Volume * 100.0f);
-            trackBarEQLow.Value = Convert.ToInt32(presetData.LoEqValue * 100.0f);
-            trackBarEQLow_ValueChanged(this, new EventArgs());
-            trackBarEQMid.Value = Convert.ToInt32(presetData.MedEqValue * 100.0f);
-            trackBarEQMid_ValueChanged(this, new EventArgs());
-            trackBarEQHi.Value = Convert.ToInt32(presetData.HiEqValue * 100.0f);
-            trackBarEQHi_ValueChanged(this, new EventArgs());
+            sliderTempo.Value = Convert.ToInt32(presetData.Tempo * 100.0f);
+            sliderPitch.Value = Convert.ToInt32(presetData.Pitch * _ticksPerSemitone);
+            sliderVolume.Value = Convert.ToInt32(presetData.Volume * 100.0f);
+            sliderEQLow.Value = Convert.ToInt32(presetData.LoEqValue * 100.0f);
+            sliderEQLow_ValueChanged(this, new EventArgs());
+            sliderEQMid.Value = Convert.ToInt32(presetData.MedEqValue * 100.0f);
+            sliderEQMid_ValueChanged(this, new EventArgs());
+            sliderEQHi.Value = Convert.ToInt32(presetData.HiEqValue * 100.0f);
+            sliderEQHi_ValueChanged(this, new EventArgs());
 
             upDownCue.Value = (decimal)presetData.Cue.TotalSeconds;
 
@@ -1253,7 +1263,7 @@ namespace PracticeSession
                 UpdatePresetButtonUI();
             }
             _isPresetSaveMode = false;
-            buttonSavePreset.BackColor = SystemColors.Control;
+            buttonSavePreset.BackColor = Color.FromArgb(255, 30, 30, 30);
         }
 
         private void ResetPreset(int presetIndex)
@@ -1269,7 +1279,7 @@ namespace PracticeSession
                 UpdatePresetButtonUI();
             }
             _isPresetResetMode = false;
-            buttonReset.BackColor = SystemColors.Control;
+            buttonReset.BackColor = Color.FromArgb(255, 30, 30, 30);
         }
 
         private void ProcessPresetClick(int presetIndex)

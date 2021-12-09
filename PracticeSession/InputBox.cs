@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Drawing;
+using DarkUI.Controls;
 
 namespace PracticeSession
 {
@@ -10,12 +11,15 @@ namespace PracticeSession
         {
             Form form = new Form();
             Label label = new Label();
-            TextBox textBox = new TextBox();
-            Button buttonOk = new Button();
-            Button buttonCancel = new Button();
+            DarkTextBox textBox = new DarkTextBox();
+            DarkButton buttonOk = new DarkButton();
+            DarkButton buttonCancel = new DarkButton();
 
+            form.BackColor = Color.FromArgb(255, 25, 25, 25);
             form.Text = title;
             label.Text = promptText;
+            label.BackColor = Color.Transparent;
+            label.ForeColor = Color.FromArgb(255, 230, 230, 230);
             textBox.Text = value;
 
             buttonOk.Text = "OK";
