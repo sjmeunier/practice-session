@@ -150,6 +150,8 @@ namespace PracticeSession
             this.menuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.overlayStart = new PracticeSession.GlassyPanel();
+            this.overlayEnd = new PracticeSession.GlassyPanel();
             this.panelControls.SuspendLayout();
             this.toolStripChannels.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.upDownCue)).BeginInit();
@@ -1155,7 +1157,7 @@ namespace PracticeSession
             this.upDownEndLoopSeconds.Name = "upDownEndLoopSeconds";
             this.upDownEndLoopSeconds.Size = new System.Drawing.Size(83, 39);
             this.upDownEndLoopSeconds.TabIndex = 126;
-            this.upDownEndLoopSeconds.VisibleChanged += new System.EventHandler(this.upDownEndLoopSeconds_ValueChanged);
+            this.upDownEndLoopSeconds.ValueChanged += new System.EventHandler(this.upDownEndLoopSeconds_ValueChanged);
             // 
             // upDownEndLoopMinutes
             // 
@@ -1168,7 +1170,7 @@ namespace PracticeSession
             this.upDownEndLoopMinutes.Name = "upDownEndLoopMinutes";
             this.upDownEndLoopMinutes.Size = new System.Drawing.Size(83, 39);
             this.upDownEndLoopMinutes.TabIndex = 125;
-            this.upDownEndLoopMinutes.VisibleChanged += new System.EventHandler(this.upDownEndLoopMinutes_ValueChanged);
+            this.upDownEndLoopMinutes.ValueChanged += new System.EventHandler(this.upDownEndLoopMinutes_ValueChanged);
             // 
             // upDownStartLoopMilliseconds
             // 
@@ -1563,6 +1565,7 @@ namespace PracticeSession
             this.pictureBoxRenderer.Size = new System.Drawing.Size(1653, 319);
             this.pictureBoxRenderer.TabIndex = 65;
             this.pictureBoxRenderer.TabStop = false;
+            this.pictureBoxRenderer.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBoxRenderer_MouseDown);
             // 
             // sliderPlayTime
             // 
@@ -1743,12 +1746,34 @@ namespace PracticeSession
             this.menuItemAbout.Size = new System.Drawing.Size(212, 44);
             this.menuItemAbout.Text = "&About";
             // 
+            // overlayStart
+            // 
+            this.overlayStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.overlayStart.Location = new System.Drawing.Point(15, 126);
+            this.overlayStart.Name = "overlayStart";
+            this.overlayStart.Opacity = 50;
+            this.overlayStart.Size = new System.Drawing.Size(10, 319);
+            this.overlayStart.TabIndex = 115;
+            this.overlayStart.MouseDown += new System.Windows.Forms.MouseEventHandler(this.overlayStart_MouseDown);
+            // 
+            // overlayEnd
+            // 
+            this.overlayEnd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.overlayEnd.Location = new System.Drawing.Point(1658, 126);
+            this.overlayEnd.Name = "overlayEnd";
+            this.overlayEnd.Opacity = 50;
+            this.overlayEnd.Size = new System.Drawing.Size(10, 319);
+            this.overlayEnd.TabIndex = 116;
+            this.overlayEnd.MouseDown += new System.Windows.Forms.MouseEventHandler(this.overlayEnd_MouseDown);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.ClientSize = new System.Drawing.Size(1684, 1305);
+            this.Controls.Add(this.overlayEnd);
+            this.Controls.Add(this.overlayStart);
             this.Controls.Add(this.overlayPosition);
             this.Controls.Add(this.pictureBoxRenderer);
             this.Controls.Add(this.sliderPlayTime);
@@ -1912,5 +1937,7 @@ namespace PracticeSession
         private Label label3;
         private ToolStripMenuItem toolStripMenuHelp;
         private ToolStripMenuItem menuItemAbout;
+        private GlassyPanel overlayStart;
+        private GlassyPanel overlayEnd;
     }
 }

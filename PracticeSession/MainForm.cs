@@ -28,6 +28,8 @@ namespace PracticeSession
 
         private string _currentFilename = "";
 
+        private bool _pausedWhileMovingPositionManually = false;
+
         private readonly int _maxRecentDisplayLength = 60;
 
         // msec
@@ -60,6 +62,12 @@ namespace PracticeSession
             _audioPlaybackService = audioPlaybackService;
             _audioRenderService = audioRenderService;
             InitializeComponent();
+
+            overlayStart.Width = 0;
+            overlayStart.Left = pictureBoxRenderer.Left;
+
+            overlayEnd.Width = 0;
+            overlayEnd.Left = pictureBoxRenderer.Right;
 
             //Little hack to fix a bug in DarkUI
             this.buttonChannelDualMono.Size = new System.Drawing.Size(93, 36);
@@ -300,6 +308,8 @@ namespace PracticeSession
 
                 sliderPlayTime.Value = 0;
 
+                UpdateStartLoopTime(new TimeSpan(0, 0, 0, 0));
+                UpdateEndLoopTime(_audioPlaybackService.FilePlayDuration);
                 if (autoPlay)
                 {
                     buttonPlay.Image = Properties.Resources.Pause;
@@ -321,8 +331,8 @@ namespace PracticeSession
             IPeakProvider peakProvider = new MaxPeakProvider();
             WaveFormRendererSettings settings = new StandardWaveFormRendererSettings()
             {
-                TopHeight = pictureBoxRenderer.Height  / 2 - 5,
-                BottomHeight = pictureBoxRenderer.Height / 2 - 5,
+                TopHeight = pictureBoxRenderer.Height  / 2,
+                BottomHeight = pictureBoxRenderer.Height / 2,
                 Width = pictureBoxRenderer.Width,
                 BackgroundColor = Color.FromArgb(255, 40, 40, 40),
                 TopPeakPen = new Pen(Color.FromArgb(255, 0, 200, 40)),
@@ -636,9 +646,17 @@ namespace PracticeSession
                 overlayPosition.Left = pictureBoxRenderer.Left + pictureBoxRenderer.Width * sliderPlayTime.Value / sliderPlayTime.Maximum;
             }
 
-            if (_ignorePlayTimeUIEvents)
-                return;
+
             if (_audioPlaybackService == null)
+                return;
+
+            if (_pausedWhileMovingPositionManually)
+            {
+               // _audioPlaybackService.Play();
+                _pausedWhileMovingPositionManually = false;
+            }
+
+            if (_ignorePlayTimeUIEvents)
                 return;
 
             float playPosSeconds = (float)(sliderPlayTime.Value / (float)sliderPlayTime.Maximum * _audioPlaybackService.FilePlayDuration.TotalSeconds);
@@ -827,6 +845,56 @@ namespace PracticeSession
             {
                 _audioPlaybackService.Loop = checkBoxLoop.Checked;
             }
+        }
+
+        private void UpdateStartLoopTime(TimeSpan time)
+        {
+            if (_audioPlaybackService == null)
+            {
+                return;
+            }
+
+            if (time > _audioPlaybackService.FilePlayDuration)
+            {
+                time = _audioPlaybackService.FilePlayDuration;
+            }
+
+            upDownStartLoopMinutes.ValueChanged -= upDownStartLoopMinutes_ValueChanged;
+            upDownStartLoopSeconds.ValueChanged -= upDownStartLoopSeconds_ValueChanged;
+            upDownStartLoopMilliseconds.ValueChanged -= upDownStartLoopMilliseconds_ValueChanged;
+
+            upDownStartLoopMinutes.Value = (int)Math.Floor(time.TotalMinutes);
+            upDownStartLoopSeconds.Value = time.Seconds;
+            upDownStartLoopMilliseconds.Value = time.Milliseconds;
+
+            upDownStartLoopMinutes.ValueChanged += upDownStartLoopMinutes_ValueChanged;
+            upDownStartLoopSeconds.ValueChanged += upDownStartLoopSeconds_ValueChanged;
+            upDownStartLoopMilliseconds.ValueChanged += upDownStartLoopMilliseconds_ValueChanged;
+        }
+
+        private void UpdateEndLoopTime(TimeSpan time)
+        {
+            if (_audioPlaybackService == null)
+            {
+                return;
+            }
+
+            if (time > _audioPlaybackService.FilePlayDuration)
+            {
+                time = _audioPlaybackService.FilePlayDuration;
+            }
+
+            upDownEndLoopMinutes.ValueChanged -= upDownEndLoopMinutes_ValueChanged;
+            upDownEndLoopSeconds.ValueChanged -= upDownEndLoopSeconds_ValueChanged;
+            upDownEndLoopMilliseconds.ValueChanged -= upDownEndLoopMilliseconds_ValueChanged;
+
+            upDownEndLoopMinutes.Value = (int)Math.Floor(time.TotalMinutes);
+            upDownEndLoopSeconds.Value = time.Seconds;
+            upDownEndLoopMilliseconds.Value = time.Milliseconds;
+
+            upDownEndLoopMinutes.ValueChanged += upDownEndLoopMinutes_ValueChanged;
+            upDownEndLoopSeconds.ValueChanged += upDownEndLoopSeconds_ValueChanged;
+            upDownEndLoopMilliseconds.ValueChanged += upDownEndLoopMilliseconds_ValueChanged;
         }
 
         private void buttonStartLoopNow_Click(object sender, EventArgs e)
@@ -1042,6 +1110,11 @@ namespace PracticeSession
                 upDownStartLoopSeconds.ValueChanged += upDownStartLoopSeconds_ValueChanged;
                 upDownStartLoopMilliseconds.ValueChanged += upDownStartLoopMilliseconds_ValueChanged;
             }
+
+            var percent = startMarker.TotalSeconds / _audioPlaybackService.FilePlayDuration.TotalSeconds;
+            overlayStart.Width = (int)(percent * pictureBoxRenderer.Width);
+            overlayStart.Left = pictureBoxRenderer.Left;
+
         }
 
         private void ApplyLoopEndMarkerUI(TimeSpan endMarker)
@@ -1061,6 +1134,14 @@ namespace PracticeSession
                 upDownEndLoopSeconds.ValueChanged += upDownEndLoopSeconds_ValueChanged;
                 upDownEndLoopMilliseconds.ValueChanged += upDownEndLoopMilliseconds_ValueChanged;
             }
+
+            var percent = (_audioPlaybackService.FilePlayDuration.TotalSeconds - endMarker.TotalSeconds) / _audioPlaybackService.FilePlayDuration.TotalSeconds;
+            if (Math.Round(percent * 100, 0) == 100)
+            {
+                percent = 0;
+            }
+            overlayEnd.Width = (int)(percent * pictureBoxRenderer.Width);
+            overlayEnd.Left = pictureBoxRenderer.Left + pictureBoxRenderer.Width - overlayEnd.Width;
         }
 
         private void upDownCurrent_ValueChanged(object sender, EventArgs e)
@@ -1366,10 +1447,40 @@ namespace PracticeSession
 
         }
 
+        private void UpdatePlayTimeAfterClick(double percent)
+        {
+            if (_audioPlaybackService == null)
+            {
+                return;
+            }
+
+            if (_audioPlaybackService.PlaybackStatus == PlaybackStatus.Playing)
+            {
+                _pausedWhileMovingPositionManually = true;
+              //  _audioPlaybackService.Pause();
+            }
+            double value = percent * (sliderPlayTime.Maximum - sliderPlayTime.Minimum);
+            sliderPlayTime.Value = Convert.ToInt32(value);
+        }
+
         private void sliderPlayTime_MouseDown(object sender, MouseEventArgs e)
         {
-            double value = ((double)e.X / (double)sliderPlayTime.Width) * (sliderPlayTime.Maximum - sliderPlayTime.Minimum);
-            sliderPlayTime.Value = Convert.ToInt32(value);
+            UpdatePlayTimeAfterClick((double)e.X / (double)sliderPlayTime.Width);
+        }
+
+        private void pictureBoxRenderer_MouseDown(object sender, MouseEventArgs e)
+        {
+            UpdatePlayTimeAfterClick((double)e.X / (double)pictureBoxRenderer.Width);
+        }
+
+        private void overlayStart_MouseDown(object sender, MouseEventArgs e)
+        {
+            UpdatePlayTimeAfterClick((double)e.X / (double)pictureBoxRenderer.Width);
+        }
+
+        private void overlayEnd_MouseDown(object sender, MouseEventArgs e)
+        {
+            UpdatePlayTimeAfterClick(((double)e.X + overlayEnd.Left - pictureBoxRenderer.Left) / (double)pictureBoxRenderer.Width);
         }
     }
 }

@@ -97,7 +97,7 @@ namespace PracticeSession
             this.darkLabel5.Size = new System.Drawing.Size(436, 128);
             this.darkLabel5.TabIndex = 5;
             this.darkLabel5.Text = "The core code is forked from the PracticeSharp project by Yuval Naveh, and subseq" +
-    "uently thoroughly overhauled and converted to .NET Core";
+    "uently thoroughly overhauled and converted to .NET 5";
             // 
             // pictureBox1
             // 
