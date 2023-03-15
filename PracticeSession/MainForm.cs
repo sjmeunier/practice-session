@@ -513,7 +513,8 @@ namespace PracticeSession
         private void InitializeApplicationFolders()
         {
             // Initialize Application Data Folder - used for storing Preset Bank files
-            _appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\PracticeSession";
+            //_appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\PracticeSession";
+            _appDataFolder = Environment.CurrentDirectory + "\\Data";
             if (!Directory.Exists(_appDataFolder))
             {
                 Directory.CreateDirectory(_appDataFolder);
