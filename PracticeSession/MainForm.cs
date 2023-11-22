@@ -24,7 +24,7 @@ namespace PracticeSession
         private int _activePreset = 0;
         private bool _isPresetSaveMode = false;
         private bool _isPresetResetMode = false;
-        private PresetData[] _presetData = new PresetData[8]; 
+        private PresetData[] _presetData = new PresetData[8];
 
         private string _currentFilename = "";
 
@@ -145,7 +145,7 @@ namespace PracticeSession
                     Application.Exit();
                     break;
             }
-            
+
         }
 
         private void menuItemHelp_Clicked(object sender, ToolStripItemClickedEventArgs e)
@@ -243,13 +243,13 @@ namespace PracticeSession
         {
             if (_audioPlaybackService.PlaybackStatus == PlaybackStatus.Playing)
             {
-                buttonPlay.Image = Resources.Play;
+                buttonPlay.BackgroundImage = Resources.Play;
                 _audioPlaybackService.Pause();
             }
             else if ((_audioPlaybackService.PlaybackStatus == PlaybackStatus.Pausing) ||
                      (_audioPlaybackService.PlaybackStatus == PlaybackStatus.Ready))
             {
-                buttonPlay.Image = Resources.Pause;
+                buttonPlay.BackgroundImage = Resources.Pause;
 
                 // Mask the track bar & current controls updates - to remove jumps due to old play time positions
                 TempMaskOutPlayTimeTrackBar();
@@ -263,7 +263,7 @@ namespace PracticeSession
                 if (sliderPlayTime.Value == sliderPlayTime.Maximum)
                     sliderPlayTime.Value = sliderPlayTime.Minimum;
 
-                buttonPlay.Image = Resources.Play;
+                buttonPlay.BackgroundImage = Resources.Play;
                 OpenFile(_currentFilename, false);
                 _audioPlaybackService.Play();
             }
@@ -297,9 +297,9 @@ namespace PracticeSession
                 ToggleControls(true);
 
                 var duration = new MinSecTime(_audioPlaybackService.FilePlayDuration.TotalSeconds);
-                labelPlayDuration.Text =  $"{duration.Minutes:00}:{duration.Seconds:00}";
+                labelPlayDuration.Text = $"{duration.Minutes:00}:{duration.Seconds:00}";
 
-                 duration = new MinSecTime(_audioPlaybackService.FilePlayDuration.TotalSeconds / 4.0);
+                duration = new MinSecTime(_audioPlaybackService.FilePlayDuration.TotalSeconds / 4.0);
                 labelPlayDuration1Q.Text = $"{duration.Minutes:00}:{duration.Seconds:00}";
                 duration = new MinSecTime(_audioPlaybackService.FilePlayDuration.TotalSeconds / 2.0);
                 labelPlayDuration2Q.Text = $"{duration.Minutes:00}:{duration.Seconds:00}";
@@ -312,7 +312,7 @@ namespace PracticeSession
                 UpdateEndLoopTime(_audioPlaybackService.FilePlayDuration);
                 if (autoPlay)
                 {
-                    buttonPlay.Image = Properties.Resources.Pause;
+                    buttonPlay.BackgroundImage = Properties.Resources.Pause;
                     _audioPlaybackService.Play();
                 }
             }
@@ -331,7 +331,7 @@ namespace PracticeSession
             IPeakProvider peakProvider = new MaxPeakProvider();
             WaveFormRendererSettings settings = new StandardWaveFormRendererSettings()
             {
-                TopHeight = pictureBoxRenderer.Height  / 2,
+                TopHeight = pictureBoxRenderer.Height / 2,
                 BottomHeight = pictureBoxRenderer.Height / 2,
                 Width = pictureBoxRenderer.Width,
                 BackgroundColor = Color.FromArgb(255, 40, 40, 40),
@@ -406,7 +406,7 @@ namespace PracticeSession
             openFileDialog.InitialDirectory = Properties.Settings.Default.LastOpenedFolder;
             openFileDialog.FilterIndex = Properties.Settings.Default.LastFilterIndex;
 
-            buttonPlay.Image = Resources.Play;
+            buttonPlay.BackgroundImage = Resources.Play;
             buttonChannelBoth.Checked = true;
             _audioPlaybackService.InputChannelMode = InputChannelMode.Both;
 
@@ -436,7 +436,7 @@ namespace PracticeSession
                    || (e.PlaybackStatus == PlaybackStatus.Pausing)
                    || (e.PlaybackStatus == PlaybackStatus.Error))
                 {
-                    buttonPlay.Image = Resources.Play;
+                    buttonPlay.BackgroundImage = Resources.Play;
                     PlayTimeUpdateTimer.Enabled = false;
 
                     // Force a last refresh of play time controls
@@ -453,7 +453,7 @@ namespace PracticeSession
                 }
                 else if (e.PlaybackStatus == PlaybackStatus.Playing)
                 {
-                    buttonPlay.Image = Resources.Pause;
+                    buttonPlay.BackgroundImage = Resources.Pause;
                     PlayTimeUpdateTimer.Enabled = true;
                 }
             })
@@ -503,7 +503,7 @@ namespace PracticeSession
             {
                 recentMenuItem.Click += new EventHandler(RecentMenuItem_Click);
             }
-            
+
             _recentFilesList = new MostRecentlyUsedList(_recentFilesMenuItems.Count, $"{_appDataFolder}\\practicesession_mru.txt");
         }
 
@@ -619,7 +619,7 @@ namespace PracticeSession
             if (_audioPlaybackService == null)
                 return;
 
-            float newEqMid= sliderEQMid.Value / 100.0f;
+            float newEqMid = sliderEQMid.Value / 100.0f;
             _audioPlaybackService.EqualizerMedBand = newEqMid;
 
             labelEQMidValue.Text = $"{sliderEQMid.Value}%";
@@ -653,7 +653,7 @@ namespace PracticeSession
 
             if (_pausedWhileMovingPositionManually)
             {
-               // _audioPlaybackService.Play();
+                // _audioPlaybackService.Play();
                 _pausedWhileMovingPositionManually = false;
             }
 
@@ -721,7 +721,7 @@ namespace PracticeSession
                     UpdatePlayTimeTrackBarCurrentValue();
                 }
 
-               // positionMarkersPanel.Refresh();
+                // positionMarkersPanel.Refresh();
             }
             finally
             {
@@ -1458,7 +1458,7 @@ namespace PracticeSession
             if (_audioPlaybackService.PlaybackStatus == PlaybackStatus.Playing)
             {
                 _pausedWhileMovingPositionManually = true;
-              //  _audioPlaybackService.Pause();
+                //  _audioPlaybackService.Pause();
             }
             double value = percent * (sliderPlayTime.Maximum - sliderPlayTime.Minimum);
             sliderPlayTime.Value = Convert.ToInt32(value);
